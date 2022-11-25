@@ -2,11 +2,13 @@ import { Button, Table } from "antd";
 import { useState } from "react";
 import { useNavigateTo } from "../../../../../hooks";
 import { useItemsQuery } from "../../../../../services/api/catalog/queries/useItemsQuery";
+import { useColumns } from "./hooks";
 
 export const ItemsList = () => {
   const [page, setPage] = useState(1);
   const itemsQuery = useItemsQuery({ page, perPage: 50 });
   const navigateTo = useNavigateTo();
+  const columns = useColumns();
 
   return (
     <>
@@ -29,31 +31,7 @@ export const ItemsList = () => {
       </div>
 
       <Table
-        columns={[
-          {
-            title: "Item",
-            dataIndex: "name",
-            width: "20%",
-            render: (_, item) => (
-              <Button
-                onClick={() => navigateTo.catalog.viewItem(item.id)}
-                type="link"
-              >
-                {item.name}
-              </Button>
-            ),
-          },
-          {
-            title: "ID",
-            width: "20%",
-            dataIndex: "id",
-          },
-          {
-            title: "Description",
-            width: "60%",
-            dataIndex: "shortDescription",
-          },
-        ]}
+        columns={columns}
         rowKey={({ id }) => id}
         dataSource={itemsQuery.data?.results ?? []}
         pagination={{
