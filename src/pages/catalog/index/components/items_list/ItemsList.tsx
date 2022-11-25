@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigateTo } from "../../../../../hooks";
 import { useItemsQuery } from "../../../../../services/api/catalog/queries/useItemsQuery";
 import { useColumns } from "./hooks";
+import * as S from "./ItemsList.style";
 
 export const ItemsList = () => {
   const [page, setPage] = useState(1);
@@ -12,15 +13,8 @@ export const ItemsList = () => {
 
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+      <S.Header.Container>
         <Button
-          style={{ marginBottom: "1rem" }}
           onClick={() => {
             navigateTo.catalog.createItem();
           }}
@@ -28,8 +22,7 @@ export const ItemsList = () => {
         >
           Create Item
         </Button>
-      </div>
-
+      </S.Header.Container>
       <Table
         columns={columns}
         rowKey={({ id }) => id}
