@@ -37,7 +37,10 @@ export const useOnFinish = () => {
         return { ...updatedItem, [key]: item[key as keyof ItemModel] };
       }, {} as Partial<ItemModel>);
 
-      if (Object.keys(updatedItem).length === 0) return;
+      if (Object.keys(updatedItem).length === 0) {
+        navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
+        return;
+      }
 
       updateItemMutation.mutate({
         ...updatedItem,

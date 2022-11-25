@@ -1,4 +1,12 @@
-import { Breadcrumb, Button, Form, Input, Skeleton, Typography } from "antd";
+import {
+  Breadcrumb,
+  Button,
+  Form,
+  Input,
+  Skeleton,
+  Space,
+  Typography,
+} from "antd";
 import { useParams } from "react-router-dom";
 import { Template } from "../../../components";
 import { useNavigateTo } from "../../../hooks";
@@ -20,28 +28,43 @@ export const EditItem = () => {
   return (
     <Template>
       <Template.Header>
-        <Typography.Title level={3}>{`Edit Item ${id}`}</Typography.Title>
-        <Breadcrumb>
-          <Breadcrumb.Item
-            href=""
-            onClick={(e) => {
-              e.preventDefault();
-              navigateTo.catalog.index();
-            }}
+        <Space direction="vertical">
+          <Typography.Title level={3}>{`Edit Item ${id}`}</Typography.Title>
+          <Breadcrumb>
+            <Breadcrumb.Item
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                navigateTo.catalog.index();
+              }}
+            >
+              Catalog
+            </Breadcrumb.Item>
+            <Breadcrumb.Item
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
+              }}
+            >
+              {itemQuery.data?.name}
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>Edit</Breadcrumb.Item>
+          </Breadcrumb>
+        </Space>
+        <Space>
+          <Button
+            size="large"
+            block
+            type="default"
+            onClick={() => navigateTo.catalog.index()}
           >
-            Catalog
-          </Breadcrumb.Item>
-          <Breadcrumb.Item
-            href=""
-            onClick={(e) => {
-              e.preventDefault();
-              navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
-            }}
-          >
-            {itemQuery.data?.name}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>Edit</Breadcrumb.Item>
-        </Breadcrumb>
+            Cancel
+          </Button>
+          <Button size="large" block onClick={form.submit} type="primary">
+            Save
+          </Button>
+        </Space>
       </Template.Header>
       <Template.Content>
         <Form
@@ -111,18 +134,6 @@ export const EditItem = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item>
-            <Button block htmlType="submit" type="primary">
-              Save
-            </Button>
-          </Form.Item>
-          <Button
-            block
-            type="default"
-            onClick={() => navigateTo.catalog.index()}
-          >
-            Cancel
-          </Button>
         </Form>
       </Template.Content>
     </Template>

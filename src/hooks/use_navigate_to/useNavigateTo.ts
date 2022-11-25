@@ -17,6 +17,12 @@ export const useNavigateTo = () => {
           navigate(Paths.Catalog.EditItem.replace(":id", String(id))),
         viewItem: (id: number) =>
           navigate(Paths.Catalog.ViewItem.replace(":id", String(id))),
+        createEspecification: () =>
+          navigate(Paths.Catalog.CreateEspecification),
+        editEspecification: (id: number) =>
+          navigate(Paths.Catalog.EditEspecification.replace(":id", String(id))),
+        viewEspecification: (id: number) =>
+          navigate(Paths.Catalog.ViewEspecification.replace(":id", String(id))),
       },
       inventory: {
         index: () => navigate(Paths.Inventory.Index),

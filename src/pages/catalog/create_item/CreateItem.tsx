@@ -1,4 +1,4 @@
-import { Breadcrumb, Button, Form, Input, Typography } from "antd";
+import { Breadcrumb, Button, Form, Input, Space, Typography } from "antd";
 import { useCallback } from "react";
 import { Template } from "../../../components";
 import { useNavigateTo, useRefreshQuery } from "../../../hooks";
@@ -22,19 +22,21 @@ export const CreateItem = () => {
     <>
       <Template>
         <Template.Header>
-          <Typography.Title level={3}>Create Item</Typography.Title>
-          <Breadcrumb>
-            <Breadcrumb.Item
-              href=""
-              onClick={(e) => {
-                e.preventDefault();
-                navigateTo.catalog.index();
-              }}
-            >
-              Catalog
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>Create Item</Breadcrumb.Item>
-          </Breadcrumb>
+          <Space size={1} direction="vertical">
+            <Typography.Title level={3}>Create Item</Typography.Title>
+            <Breadcrumb>
+              <Breadcrumb.Item
+                href=""
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateTo.catalog.index();
+                }}
+              >
+                Catalog
+              </Breadcrumb.Item>
+              <Breadcrumb.Item>Create Item</Breadcrumb.Item>
+            </Breadcrumb>
+          </Space>
         </Template.Header>
         <Template.Content>
           <Form

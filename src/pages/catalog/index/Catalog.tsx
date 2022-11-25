@@ -1,6 +1,6 @@
 import { Tabs, Typography } from "antd";
 import { Template } from "../../../components";
-import { ItemsList } from "./components";
+import { EspecificationsList, ItemsList } from "./components";
 
 export const Index = () => {
   return (
@@ -15,7 +15,7 @@ export const Index = () => {
             {
               key: "especifications",
               label: "Especifications",
-              children: "Especifications",
+              children: <EspecificationsList />,
             },
           ]}
         />

@@ -39,57 +39,51 @@ export const ViewItem = () => {
   return (
     <Template>
       <Template.Header>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
+        <Space size={1} direction="vertical">
           <Typography.Title level={3}>
             {itemQuery.data?.name ?? ""}
           </Typography.Title>
-          <Space>
-            <Popconfirm
-              placement="bottomLeft"
-              title="Remove item?"
-              open={isConfirmRemovePopupOpen}
-              onConfirm={() =>
-                removeItemMutation.mutate({ id: itemQuery.data?.id ?? 0 })
-              }
-              okButtonProps={{ loading: removeItemMutation.isLoading }}
-              onCancel={() => setIsConfirmRemovePopupOpen(false)}
-            >
-              <Button
-                onClick={() => setIsConfirmRemovePopupOpen(true)}
-                size="large"
-              >
-                Remove
-              </Button>
-            </Popconfirm>
-            <Button
-              size="large"
-              onClick={() => {
-                navigateTo.catalog.editItem(itemQuery?.data?.id ?? 0);
+          <Breadcrumb>
+            <Breadcrumb.Item
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                navigateTo.catalog.index();
               }}
-              type="primary"
             >
-              Edit
-            </Button>
-          </Space>
-        </div>
-        <Breadcrumb>
-          <Breadcrumb.Item
-            href=""
-            onClick={(e) => {
-              e.preventDefault();
-              navigateTo.catalog.index();
-            }}
+              Catalog
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>{itemQuery.data?.name}</Breadcrumb.Item>
+          </Breadcrumb>
+        </Space>
+        <Space>
+          <Popconfirm
+            placement="bottomLeft"
+            title="Remove item?"
+            open={isConfirmRemovePopupOpen}
+            onConfirm={() =>
+              removeItemMutation.mutate({ id: itemQuery.data?.id ?? 0 })
+            }
+            okButtonProps={{ loading: removeItemMutation.isLoading }}
+            onCancel={() => setIsConfirmRemovePopupOpen(false)}
           >
-            Catalog
-          </Breadcrumb.Item>
-          <Breadcrumb.Item>{itemQuery.data?.name}</Breadcrumb.Item>
-        </Breadcrumb>
+            <Button
+              onClick={() => setIsConfirmRemovePopupOpen(true)}
+              size="large"
+            >
+              Remove
+            </Button>
+          </Popconfirm>
+          <Button
+            size="large"
+            onClick={() => {
+              navigateTo.catalog.editItem(itemQuery?.data?.id ?? 0);
+            }}
+            type="primary"
+          >
+            Edit
+          </Button>
+        </Space>
       </Template.Header>
       <Template.Content>
         <Table

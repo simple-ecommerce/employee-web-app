@@ -60,6 +60,18 @@ function App() {
             path={Paths.Catalog.ViewItem}
             element={<Pages.Catalog.ViewItem />}
           />
+          <Route
+            path={Paths.Catalog.CreateEspecification}
+            element={<Pages.Catalog.CreateEspecification />}
+          />
+          <Route
+            path={Paths.Catalog.EditEspecification}
+            element={<Pages.Catalog.EditEspecification />}
+          />
+          <Route
+            path={Paths.Catalog.ViewEspecification}
+            element={<Pages.Catalog.ViewEspecification />}
+          />
           <Route path={Paths.Catalog.Index} element={<Pages.Catalog.Index />} />
 
           {/* INVENTORY */}
