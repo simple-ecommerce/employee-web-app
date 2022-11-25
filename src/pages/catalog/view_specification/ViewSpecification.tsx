@@ -93,18 +93,6 @@ export const ViewSpecification = () => {
                 title: "Value",
                 dataIndex: "value",
                 key: "value",
-                render: (value, option, index) => {
-                  console.log({ option });
-                  if (option.key === "options")
-                    return (
-                      <>
-                        {(option.value as any[]).map((option) => (
-                          <Tag>{option.name}</Tag>
-                        ))}
-                      </>
-                    );
-                  return <>{value}</>;
-                },
               },
             ]}
             pagination={false}
@@ -115,17 +103,6 @@ export const ViewSpecification = () => {
                 key: "name",
                 name: "Name",
                 value: specificationQuery.data?.name,
-              },
-              {
-                key: "options",
-                name: "Options",
-                value: [
-                  { id: 4, name: "P" },
-                  { id: 5, name: "M" },
-                  { id: 6, name: "G" },
-                  { id: 7, name: "GG" },
-                  { id: 8, name: "XL" },
-                ],
               },
             ]}
           />

@@ -34,7 +34,7 @@ export const SpecificationsList = () => {
         }}
         columns={[
           {
-            title: "Name",
+            title: "Category",
             key: "name",
             dataIndex: "name",
             render: (_, specification) => {
