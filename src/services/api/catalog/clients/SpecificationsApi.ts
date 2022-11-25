@@ -3,8 +3,8 @@ import { ApiService } from "../../ApiService";
 import { Identifiable } from "../../types/Identifiable";
 import { PaginatedResponse } from "../../types/PaginatedReponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
-import { EspecificationModel } from "../models/EspecificationModel";
-import { EspecificationOptionModel } from "../models/EspecificationOptionModel";
+import { EspecificationModel } from "../models/SpecificationModel";
+import { EspecificationOptionModel } from "../models/SpecificationOptionModel";
 
 export class EspecificationsApi {
   static options = {
