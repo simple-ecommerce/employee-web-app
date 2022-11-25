@@ -4,6 +4,9 @@ export const Paths = {
   },
   Catalog: {
     Index: "/catalog",
+    CreateItem: "/catalog/item/create",
+    EditItem: "/catalog/item/:id/edit",
+    ViewItem: "/catalog/item/:id",
   },
   Inventory: {
     Index: "/inventory",

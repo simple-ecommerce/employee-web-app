@@ -35,6 +35,7 @@ export class TokenApi {
       { accessToken: string }
     >({
       url: "/v1/authorization/refresh",
+      data: { refreshToken },
     });
 
     return response;

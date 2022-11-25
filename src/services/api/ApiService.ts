@@ -45,10 +45,10 @@ export class ApiService {
     params?: Params;
     url: string;
   }): Promise<Response> {
-    const reponse = await ApiService.client.post<Response>(url, data, {
+    const response = await ApiService.client.post<Response>(url, data, {
       params,
     });
-    return reponse?.data;
+    return response?.data;
   }
 
   static async patch<Data, Response = void, Params = unknown>({

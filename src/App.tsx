@@ -42,22 +42,49 @@ function App() {
       </Layout.Sider>
       <Layout.Content>
         <Routes>
+          {/* DASHBOARD */}
           <Route
             path={Paths.Dashboard.Index}
             element={<Pages.Dashboard.Index />}
           />
+          {/* CATALOG */}
+          <Route
+            path={Paths.Catalog.CreateItem}
+            element={<Pages.Catalog.CreateItem />}
+          />
+          <Route
+            path={Paths.Catalog.EditItem}
+            element={<Pages.Catalog.EditItem />}
+          />
+          <Route
+            path={Paths.Catalog.ViewItem}
+            element={<Pages.Catalog.ViewItem />}
+          />
           <Route path={Paths.Catalog.Index} element={<Pages.Catalog.Index />} />
+
+          {/* INVENTORY */}
           <Route
             path={Paths.Inventory.Index}
             element={<Pages.Inventory.Index />}
           />
+
+          {/* ORDERS */}
           <Route path={Paths.Orders.Index} element={<Pages.Orders.Index />} />
+
+          {/* BALANCE */}
           <Route path={Paths.Balance.Index} element={<Pages.Balance.Index />} />
           <Route
             path={Paths.Settings.Index}
             element={<Pages.Settings.Index />}
           />
 
+          {/* SETTINGS */}
+          <Route
+            path={Paths.Settings.Index}
+            element={<Pages.Settings.Index />}
+          />
+
+          {/*  */}
           <Route path="/" element={<Pages.Catalog.Index />} />
         </Routes>
       </Layout.Content>
