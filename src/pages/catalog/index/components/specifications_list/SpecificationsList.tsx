@@ -1,8 +1,8 @@
 import { Button, Table, Tag } from "antd";
 import { useNavigateTo } from "../../../../../hooks";
-import * as S from "./EspecificationList.style";
+import * as S from "./SpecificationList.style";
 
-export const EspecificationsList = () => {
+export const SpecificationsList = () => {
   const navigateTo = useNavigateTo();
 
   return (
@@ -10,18 +10,18 @@ export const EspecificationsList = () => {
       <S.Header.Container>
         <Button
           type="primary"
-          onClick={() => navigateTo.catalog.createEspecification()}
+          onClick={() => navigateTo.catalog.createSpecification()}
         >
-          Create Especification
+          Create Specification
         </Button>
       </S.Header.Container>
 
       <Table
         expandable={{
-          expandedRowRender: (especification) => {
+          expandedRowRender: (specification) => {
             return (
               <>
-                {especification.options.map(({ id, name }) => (
+                {specification.options.map(({ id, name }) => (
                   <Tag key={id}>{name}</Tag>
                 ))}
                 <Tag>Red</Tag>
@@ -37,15 +37,15 @@ export const EspecificationsList = () => {
             title: "Name",
             key: "name",
             dataIndex: "name",
-            render: (_, especification) => {
+            render: (_, specification) => {
               return (
                 <Button
                   type="link"
                   onClick={() =>
-                    navigateTo.catalog.viewEspecification(especification.id)
+                    navigateTo.catalog.viewSpecification(specification.id)
                   }
                 >
-                  {especification.name}
+                  {specification.name}
                 </Button>
               );
             },

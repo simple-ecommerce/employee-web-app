@@ -3,14 +3,14 @@ import { Button, Divider, Form, Input, Space, Typography } from "antd";
 import { useState } from "react";
 import { Template } from "../../../components";
 
-export const CreateEspecification = () => {
+export const CreateSpecification = () => {
   const [form] = Form.useForm();
   const options = useState();
 
   return (
     <Template>
       <Template.Header>
-        <Typography.Title level={3}>Create Especification</Typography.Title>
+        <Typography.Title level={3}>Create Specification</Typography.Title>
         <Space>
           <Button size="large" type="default">
             Cancel

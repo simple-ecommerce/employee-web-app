@@ -12,12 +12,12 @@ import { Template } from "../../../components";
 import { useNavigateTo } from "../../../hooks";
 import { OptionsList } from "./components";
 
-export const ViewEspecification = () => {
+export const ViewSpecification = () => {
   const navigateTo = useNavigateTo();
-  const especificationQuery = {
-    data: { id: 1, name: "Especification name" },
+  const specificationQuery = {
+    data: { id: 1, name: "Specification name" },
   };
-  const removeEspecificationMutation = {
+  const removeSpecificationMutation = {
     mutate: (params: any) => {},
     isLoading: false,
   };
@@ -29,7 +29,7 @@ export const ViewEspecification = () => {
       <Template.Header>
         <Space size={1} direction="vertical">
           <Typography.Title level={3}>
-            {especificationQuery.data?.name ?? ""}
+            {specificationQuery.data?.name ?? ""}
           </Typography.Title>
           <Breadcrumb>
             <Breadcrumb.Item
@@ -39,9 +39,9 @@ export const ViewEspecification = () => {
                 navigateTo.catalog.index();
               }}
             >
-              Especifications
+              Specifications
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{especificationQuery.data?.name}</Breadcrumb.Item>
+            <Breadcrumb.Item>{specificationQuery.data?.name}</Breadcrumb.Item>
           </Breadcrumb>
         </Space>
         <Space>
@@ -50,12 +50,12 @@ export const ViewEspecification = () => {
             title="Remove item?"
             open={isConfirmRemovePopupOpen}
             onConfirm={() =>
-              removeEspecificationMutation.mutate({
-                id: especificationQuery.data?.id ?? 0,
+              removeSpecificationMutation.mutate({
+                id: specificationQuery.data?.id ?? 0,
               })
             }
             okButtonProps={{
-              loading: removeEspecificationMutation.isLoading,
+              loading: removeSpecificationMutation.isLoading,
             }}
             onCancel={() => setIsConfirmRemovePopupOpen(false)}
           >
@@ -69,8 +69,8 @@ export const ViewEspecification = () => {
           <Button
             size="large"
             onClick={() => {
-              navigateTo.catalog.editEspecification(
-                especificationQuery?.data?.id ?? 0
+              navigateTo.catalog.editSpecification(
+                specificationQuery?.data?.id ?? 0
               );
             }}
             type="primary"
@@ -110,11 +110,11 @@ export const ViewEspecification = () => {
             pagination={false}
             showHeader={false}
             dataSource={[
-              { key: "id", name: "ID", value: especificationQuery.data?.id },
+              { key: "id", name: "ID", value: specificationQuery.data?.id },
               {
                 key: "name",
                 name: "Name",
-                value: especificationQuery.data?.name,
+                value: specificationQuery.data?.name,
               },
               {
                 key: "options",

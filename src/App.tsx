@@ -61,16 +61,16 @@ function App() {
             element={<Pages.Catalog.ViewItem />}
           />
           <Route
-            path={Paths.Catalog.CreateEspecification}
-            element={<Pages.Catalog.CreateEspecification />}
+            path={Paths.Catalog.CreateSpecification}
+            element={<Pages.Catalog.CreateSpecification />}
           />
           <Route
-            path={Paths.Catalog.EditEspecification}
-            element={<Pages.Catalog.EditEspecification />}
+            path={Paths.Catalog.EditSpecification}
+            element={<Pages.Catalog.EditSpecification />}
           />
           <Route
-            path={Paths.Catalog.ViewEspecification}
-            element={<Pages.Catalog.ViewEspecification />}
+            path={Paths.Catalog.ViewSpecification}
+            element={<Pages.Catalog.ViewSpecification />}
           />
           <Route path={Paths.Catalog.Index} element={<Pages.Catalog.Index />} />
 

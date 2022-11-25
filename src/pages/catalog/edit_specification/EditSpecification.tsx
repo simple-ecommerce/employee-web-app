@@ -1,3 +1,3 @@
-export const EditEspecification = () => {
-  return <>Edit Especification</>;
+export const EditSpecification = () => {
+  return <>Edit Specification</>;
 };

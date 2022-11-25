@@ -1,9 +1,9 @@
 import { Identifiable } from "../../types/Identifiable";
-import { EspecificationOptionModel } from "./SpecificationOptionModel";
+import { SpecificationOptionModel } from "./SpecificationOptionModel";
 
-export interface EspecificationModel extends Identifiable {
+export interface SpecificationModel extends Identifiable {
   name: string;
   desciption: string;
   internalName: string;
-  options: EspecificationOptionModel[];
+  options: SpecificationOptionModel[];
 }

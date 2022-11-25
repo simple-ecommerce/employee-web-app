@@ -3,28 +3,28 @@ import { ApiService } from "../../ApiService";
 import { Identifiable } from "../../types/Identifiable";
 import { PaginatedResponse } from "../../types/PaginatedReponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
-import { EspecificationModel } from "../models/SpecificationModel";
-import { EspecificationOptionModel } from "../models/SpecificationOptionModel";
+import { SpecificationModel } from "../models/SpecificationModel";
+import { SpecificationOptionModel } from "../models/SpecificationOptionModel";
 
-export class EspecificationsApi {
+export class SpecificationsApi {
   static options = {
-    add: EspecificationsApi.addOption,
-    remove: EspecificationsApi.removeOption,
+    add: SpecificationsApi.addOption,
+    remove: SpecificationsApi.removeOption,
   };
 
   static async list({
     page,
     perPage,
-  }: PaginatedRequestPayload): Promise<PaginatedResponse<EspecificationModel>> {
+  }: PaginatedRequestPayload): Promise<PaginatedResponse<SpecificationModel>> {
     return ApiService.get({
-      url: "/catalog/especifications",
+      url: "/catalog/specifications",
       params: { page, perPage },
     });
   }
 
-  static async show({ id }: Identifiable): Promise<EspecificationModel> {
+  static async show({ id }: Identifiable): Promise<SpecificationModel> {
     return ApiService.get({
-      url: `/catalog/especifications/${id}`,
+      url: `/catalog/specifications/${id}`,
     });
   }
 
@@ -33,48 +33,48 @@ export class EspecificationsApi {
     ...data
   }: Identifiable &
     Partial<
-      Omit<EspecificationModel, "id" | "options">
-    >): Promise<EspecificationModel> {
+      Omit<SpecificationModel, "id" | "options">
+    >): Promise<SpecificationModel> {
     return ApiService.patch({
-      url: `/catalog/especifications/${id}`,
+      url: `/catalog/specifications/${id}`,
       data,
     });
   }
 
   static async create(
-    especification: Omit<EspecificationModel, "id" | "options">
-  ): Promise<EspecificationModel> {
+    specification: Omit<SpecificationModel, "id" | "options">
+  ): Promise<SpecificationModel> {
     return ApiService.post({
-      url: `/catalog/especifications`,
-      data: especification,
+      url: `/catalog/specifications`,
+      data: specification,
     });
   }
 
-  static async remove({ id }: Identifiable): Promise<EspecificationModel> {
+  static async remove({ id }: Identifiable): Promise<SpecificationModel> {
     return ApiService.delete({
-      url: `/catalog/especifications/${id}`,
+      url: `/catalog/specifications/${id}`,
     });
   }
 
   private static async addOption({
-    especificationId,
+    specificationId,
     ...data
-  }: Omit<EspecificationOptionModel, "id">) {
+  }: Omit<SpecificationOptionModel, "id">) {
     return ApiService.post({
-      url: `/catalog/especifications/${especificationId}/options`,
+      url: `/catalog/specifications/${specificationId}/options`,
       data,
     });
   }
 
   private static async removeOption({
-    especificationId,
+    specificationId,
     optionId,
   }: {
-    especificationId: Id;
+    specificationId: Id;
     optionId: Id;
   }) {
     return ApiService.delete({
-      url: `/catalog/especifications/${especificationId}/options/${optionId}`,
+      url: `/catalog/specifications/${specificationId}/options/${optionId}`,
     });
   }
 }

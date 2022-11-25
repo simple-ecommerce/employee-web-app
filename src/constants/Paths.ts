@@ -7,9 +7,9 @@ export const Paths = {
     CreateItem: "/catalog/item/create",
     EditItem: "/catalog/item/:id/edit",
     ViewItem: "/catalog/item/:id",
-    ViewEspecification: "/catalog/especification/:id",
-    CreateEspecification: "/catalog/especification/create",
-    EditEspecification: "/catalog/especification/:id/edit",
+    ViewSpecification: "/catalog/specification/:id",
+    CreateSpecification: "/catalog/specification/create",
+    EditSpecification: "/catalog/specification/:id/edit",
   },
   Inventory: {
     Index: "/inventory",
