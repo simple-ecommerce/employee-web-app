@@ -1,19 +1,21 @@
 import { Breadcrumb, Button, Form, Input, Typography } from "antd";
-import { useQueryClient } from "react-query";
+import { useCallback } from "react";
 import { Template } from "../../../components";
-import { useNavigateTo } from "../../../hooks";
+import { useNavigateTo, useRefreshQuery } from "../../../hooks";
+import { ItemModel } from "../../../services/api/catalog/models/ItemModel";
 import { useCreateItemMutation } from "../../../services/api/catalog/mutations/useCreateItemMutation";
 import { QUERIES } from "../../../services/api/constants/Queries";
 
 export const CreateItem = () => {
   const [form] = Form.useForm();
   const navigateTo = useNavigateTo();
-  const queryClient = useQueryClient();
+  const refreshQuery = useRefreshQuery();
+  const onSuccess = useCallback(async ({ id }: ItemModel) => {
+    await refreshQuery([QUERIES.CATALOG.ITEMS]);
+    navigateTo.catalog.viewItem(id);
+  }, []);
   const createItemMutation = useCreateItemMutation({
-    onSuccess: async ({ id }) => {
-      await queryClient.refetchQueries([QUERIES.CATALOG.ITEMS]);
-      navigateTo.catalog.viewItem(id);
-    },
+    onSuccess,
   });
 
   return (
