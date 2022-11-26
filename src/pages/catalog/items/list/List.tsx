@@ -4,7 +4,7 @@ import { Template } from "../../../../components";
 import { useNavigateTo } from "../../../../hooks";
 import { useItemsQuery } from "../../../../services/api/catalog/queries/useItemsQuery";
 import { useColumns } from "./hooks";
-import * as S from "./ListItems.style";
+import * as S from "./List.style";
 
 export const ListItems = () => {
   const [page, setPage] = useState(1);
