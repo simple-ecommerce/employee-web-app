@@ -30,7 +30,7 @@ export const ViewItem = () => {
   const removeItemMutation = useRemoveItemMutation({
     onSuccess: async () => {
       await refreshQuery([QUERIES.CATALOG.ITEMS]);
-      navigateTo.catalog.index();
+      navigateTo.catalog.item.list();
     },
   });
 
@@ -48,7 +48,7 @@ export const ViewItem = () => {
               href=""
               onClick={(e) => {
                 e.preventDefault();
-                navigateTo.catalog.index();
+                navigateTo.catalog.item.list();
               }}
             >
               Catalog
@@ -77,7 +77,7 @@ export const ViewItem = () => {
           <Button
             size="large"
             onClick={() => {
-              navigateTo.catalog.editItem(itemQuery?.data?.id ?? 0);
+              navigateTo.catalog.item.edit(itemQuery?.data?.id ?? 0);
             }}
             type="primary"
           >

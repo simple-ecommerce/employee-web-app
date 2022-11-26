@@ -12,7 +12,7 @@ export const CreateItem = () => {
   const refreshQuery = useRefreshQuery();
   const onSuccess = useCallback(async ({ id }: ItemModel) => {
     await refreshQuery([QUERIES.CATALOG.ITEMS]);
-    navigateTo.catalog.viewItem(id);
+    navigateTo.catalog.item.view(id);
   }, []);
   const createItemMutation = useCreateItemMutation({
     onSuccess,
@@ -29,7 +29,7 @@ export const CreateItem = () => {
                 href=""
                 onClick={(e) => {
                   e.preventDefault();
-                  navigateTo.catalog.index();
+                  navigateTo.catalog.item.list();
                 }}
               >
                 Catalog
@@ -113,7 +113,7 @@ export const CreateItem = () => {
             <Button
               block
               type="default"
-              onClick={() => navigateTo.catalog.index()}
+              onClick={() => navigateTo.catalog.item.list()}
             >
               Cancel
             </Button>

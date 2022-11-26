@@ -35,7 +35,7 @@ export const EditItem = () => {
               href=""
               onClick={(e) => {
                 e.preventDefault();
-                navigateTo.catalog.index();
+                navigateTo.catalog.item.list();
               }}
             >
               Catalog
@@ -44,7 +44,7 @@ export const EditItem = () => {
               href=""
               onClick={(e) => {
                 e.preventDefault();
-                navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
+                navigateTo.catalog.item.view(itemQuery.data?.id ?? 0);
               }}
             >
               {itemQuery.data?.name}
@@ -57,7 +57,7 @@ export const EditItem = () => {
             size="large"
             block
             type="default"
-            onClick={() => navigateTo.catalog.index()}
+            onClick={() => navigateTo.catalog.item.list()}
           >
             Cancel
           </Button>

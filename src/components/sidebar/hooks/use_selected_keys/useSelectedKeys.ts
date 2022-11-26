@@ -7,7 +7,7 @@ export const useSelectedKeys = () => {
 
   const selectedKeys = useMemo(() => {
     for (const { path } of ITEMS.slice().reverse()) {
-      if (location.pathname.startsWith(path)) return [path];
+      if (location.pathname.includes(path)) return [path];
     }
 
     return [];

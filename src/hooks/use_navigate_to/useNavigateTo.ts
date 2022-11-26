@@ -11,18 +11,26 @@ export const useNavigateTo = () => {
         index: () => navigate(Paths.Dashboard.Index),
       },
       catalog: {
-        index: () => navigate(Paths.Catalog.Index),
-        createItem: () => navigate(Paths.Catalog.CreateItem),
-        editItem: (id: number) =>
-          navigate(Paths.Catalog.EditItem.replace(":id", String(id))),
-        viewItem: (id: number) =>
-          navigate(Paths.Catalog.ViewItem.replace(":id", String(id))),
-        createSpecification: () =>
-          navigate(Paths.Catalog.CreateSpecification),
-        editSpecification: (id: number) =>
-          navigate(Paths.Catalog.EditSpecification.replace(":id", String(id))),
-        viewSpecification: (id: number) =>
-          navigate(Paths.Catalog.ViewSpecification.replace(":id", String(id))),
+        item: {
+          create: () => navigate(Paths.Catalog.Item.Create),
+          edit: (id: number) =>
+            navigate(Paths.Catalog.Item.Edit.replace(":id", String(id))),
+          list: () => navigate(Paths.Catalog.Item.List),
+          view: (id: number) =>
+            navigate(Paths.Catalog.Item.View.replace(":id", String(id))),
+        },
+        specification: {
+          create: () => navigate(Paths.Catalog.Specification.Create),
+          edit: (id: number) =>
+            navigate(
+              Paths.Catalog.Specification.Edit.replace(":id", String(id))
+            ),
+          list: () => navigate(Paths.Catalog.Specification.List),
+          view: (id: number) =>
+            navigate(
+              Paths.Catalog.Specification.View.replace(":id", String(id))
+            ),
+        },
       },
       inventory: {
         index: () => navigate(Paths.Inventory.Index),

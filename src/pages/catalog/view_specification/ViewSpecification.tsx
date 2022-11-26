@@ -36,7 +36,7 @@ export const ViewSpecification = () => {
               href=""
               onClick={(e) => {
                 e.preventDefault();
-                navigateTo.catalog.index();
+                navigateTo.catalog.specification.list();
               }}
             >
               Specifications
@@ -69,7 +69,7 @@ export const ViewSpecification = () => {
           <Button
             size="large"
             onClick={() => {
-              navigateTo.catalog.editSpecification(
+              navigateTo.catalog.specification.edit(
                 specificationQuery?.data?.id ?? 0
               );
             }}

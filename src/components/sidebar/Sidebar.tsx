@@ -10,7 +10,7 @@ export const Sidebar = () => {
     <S.Menu
       onClick={onClick}
       selectedKeys={selectedKeys}
-      mode="vertical"
+      mode="inline"
       items={items}
     />
   );

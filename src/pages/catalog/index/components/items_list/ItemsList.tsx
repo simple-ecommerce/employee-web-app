@@ -16,7 +16,7 @@ export const ItemsList = () => {
       <S.Header.Container>
         <Button
           onClick={() => {
-            navigateTo.catalog.createItem();
+            navigateTo.catalog.item.create();
           }}
           type="primary"
         >

@@ -18,7 +18,7 @@ export const useOnFinish = () => {
 
   const onSuccess = useCallback(async () => {
     await refreshQuery([QUERIES.CATALOG.ITEM, itemQuery.data?.id]);
-    navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
+    navigateTo.catalog.item.view(itemQuery.data?.id ?? 0);
   }, [refreshQuery, navigateTo, itemQuery.data]);
 
   const updateItemMutation = useUpdateItemMutation({
@@ -38,7 +38,7 @@ export const useOnFinish = () => {
       }, {} as Partial<ItemModel>);
 
       if (Object.keys(updatedItem).length === 0) {
-        navigateTo.catalog.viewItem(itemQuery.data?.id ?? 0);
+        navigateTo.catalog.item.view(itemQuery.data?.id ?? 0);
         return;
       }
 

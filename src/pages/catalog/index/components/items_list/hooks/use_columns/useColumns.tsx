@@ -14,7 +14,7 @@ export const useColumns = () => {
         width: "20%",
         render: (_, item) => (
           <Button
-            onClick={() => navigateTo.catalog.viewItem(item.id)}
+            onClick={() => navigateTo.catalog.item.view(item.id)}
             type="link"
           >
             {item.name}

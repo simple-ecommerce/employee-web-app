@@ -3,13 +3,18 @@ export const Paths = {
     Index: "/",
   },
   Catalog: {
-    Index: "/catalog",
-    CreateItem: "/catalog/item/create",
-    EditItem: "/catalog/item/:id/edit",
-    ViewItem: "/catalog/item/:id",
-    ViewSpecification: "/catalog/specification/:id",
-    CreateSpecification: "/catalog/specification/create",
-    EditSpecification: "/catalog/specification/:id/edit",
+    Item: {
+      List: "/catalog/items",
+      Create: "/catalog/item/create",
+      Edit: "/catalog/item/:id/edit",
+      View: "/catalog/item/:id",
+    },
+    Specification: {
+      List: "/catalog/specifications",
+      View: "/catalog/specification/:id",
+      Create: "/catalog/specification/create",
+      Edit: "/catalog/specification/:id/edit",
+    },
   },
   Inventory: {
     Index: "/inventory",

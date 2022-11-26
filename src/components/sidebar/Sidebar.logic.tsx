@@ -14,7 +14,21 @@ export const ITEMS = [
     path: Paths.Dashboard.Index,
     icon: <LineChartOutlined />,
   },
-  { label: "Catalog", path: Paths.Catalog.Index, icon: <AppstoreOutlined /> },
+  {
+    label: "Catalog",
+    path: "/catalog",
+    icon: <AppstoreOutlined />,
+    children: [
+      {
+        label: "Items",
+        path: Paths.Catalog.Item.List,
+      },
+      {
+        label: "Specifications",
+        path: Paths.Catalog.Specification.List,
+      },
+    ],
+  },
   { label: "Inventory", path: Paths.Inventory.Index, icon: <InboxOutlined /> },
   { label: "Orders", path: Paths.Orders.Index, icon: <TagOutlined /> },
   { label: "Balance", path: Paths.Balance.Index, icon: <DollarOutlined /> },
