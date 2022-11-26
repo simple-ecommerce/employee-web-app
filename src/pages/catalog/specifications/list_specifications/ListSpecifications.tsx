@@ -1,6 +1,6 @@
 import { Button, Table, Tag, Typography } from "antd";
-import { Template } from "../../../components";
-import { useNavigateTo } from "../../../hooks";
+import { Template } from "../../../../components";
+import { useNavigateTo } from "../../../../hooks";
 import * as S from "./ListSpecifications.style";
 
 export const ListSpecifications = () => {

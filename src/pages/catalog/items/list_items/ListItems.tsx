@@ -1,8 +1,8 @@
 import { Button, Table, Typography } from "antd";
 import { useState } from "react";
-import { Template } from "../../../components";
-import { useNavigateTo } from "../../../hooks";
-import { useItemsQuery } from "../../../services/api/catalog/queries/useItemsQuery";
+import { Template } from "../../../../components";
+import { useNavigateTo } from "../../../../hooks";
+import { useItemsQuery } from "../../../../services/api/catalog/queries/useItemsQuery";
 import { useColumns } from "./hooks";
 import * as S from "./ListItems.style";
 

@@ -8,9 +8,9 @@ import {
   Typography,
 } from "antd";
 import { useParams } from "react-router-dom";
-import { Template } from "../../../components";
-import { useNavigateTo } from "../../../hooks";
-import { useItemQuery } from "../../../services/api/catalog/queries/useItemQuery";
+import { Template } from "../../../../components";
+import { useNavigateTo } from "../../../../hooks";
+import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQuery";
 import { useOnFinish } from "./hooks";
 
 export const EditItem = () => {

@@ -8,8 +8,8 @@ import {
   Typography,
 } from "antd";
 import { useState } from "react";
-import { Template } from "../../../components";
-import { useNavigateTo } from "../../../hooks";
+import { Template } from "../../../../components";
+import { useNavigateTo } from "../../../../hooks";
 import { OptionsList } from "./components";
 
 export const ViewSpecification = () => {

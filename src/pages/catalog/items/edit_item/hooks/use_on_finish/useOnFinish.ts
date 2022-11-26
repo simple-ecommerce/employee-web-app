@@ -1,10 +1,10 @@
 import { useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { useNavigateTo, useRefreshQuery } from "../../../../../hooks";
-import { ItemModel } from "../../../../../services/api/catalog/models/ItemModel";
-import { useUpdateItemMutation } from "../../../../../services/api/catalog/mutations/useUpdateItemMutation";
-import { useItemQuery } from "../../../../../services/api/catalog/queries/useItemQuery";
-import { QUERIES } from "../../../../../services/api/constants/Queries";
+import { useNavigateTo, useRefreshQuery } from "../../../../../../hooks";
+import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
+import { useUpdateItemMutation } from "../../../../../../services/api/catalog/mutations/useUpdateItemMutation";
+import { useItemQuery } from "../../../../../../services/api/catalog/queries/useItemQuery";
+import { QUERIES } from "../../../../../../services/api/constants/Queries";
 
 export const useOnFinish = () => {
   const { id } = useParams<{ id: string }>();

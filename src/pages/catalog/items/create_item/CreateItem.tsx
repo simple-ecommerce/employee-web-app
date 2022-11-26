@@ -1,10 +1,10 @@
 import { Breadcrumb, Button, Form, Input, Space, Typography } from "antd";
 import { useCallback } from "react";
-import { Template } from "../../../components";
-import { useNavigateTo, useRefreshQuery } from "../../../hooks";
-import { ItemModel } from "../../../services/api/catalog/models/ItemModel";
-import { useCreateItemMutation } from "../../../services/api/catalog/mutations/useCreateItemMutation";
-import { QUERIES } from "../../../services/api/constants/Queries";
+import { Template } from "../../../../components";
+import { useNavigateTo, useRefreshQuery } from "../../../../hooks";
+import { ItemModel } from "../../../../services/api/catalog/models/ItemModel";
+import { useCreateItemMutation } from "../../../../services/api/catalog/mutations/useCreateItemMutation";
+import { QUERIES } from "../../../../services/api/constants/Queries";
 
 export const CreateItem = () => {
   const [form] = Form.useForm();

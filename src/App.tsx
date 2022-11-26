@@ -104,7 +104,7 @@ function App() {
           />
 
           {/*  */}
-          <Route path="/" element={<Pages.Catalog.Index />} />
+          <Route path="/" element={<Pages.Dashboard.Index />} />
         </Routes>
       </Layout.Content>
     </Layout>
