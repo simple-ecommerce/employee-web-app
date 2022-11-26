@@ -1,7 +1,7 @@
 import { Button, TableColumnsType } from "antd";
 import { useMemo } from "react";
-import { useNavigateTo } from "../../../../../../../hooks";
-import { ItemModel } from "../../../../../../../services/api/catalog/models/ItemModel";
+import { useNavigateTo } from "../../../../../hooks";
+import { ItemModel } from "../../../../../services/api/catalog/models/ItemModel";
 
 export const useColumns = () => {
   const navigateTo = useNavigateTo();
