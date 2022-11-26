@@ -12,7 +12,7 @@ import { Template } from "../../../../components";
 import { useNavigateTo } from "../../../../hooks";
 import { OptionsList } from "./components";
 
-export const ViewSpecification = () => {
+export const View = () => {
   const navigateTo = useNavigateTo();
   const specificationQuery = {
     data: { id: 1, name: "Specification name" },

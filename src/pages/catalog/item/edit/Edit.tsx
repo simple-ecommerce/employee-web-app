@@ -13,7 +13,7 @@ import { useNavigateTo } from "../../../../hooks";
 import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQuery";
 import { useOnFinish } from "./hooks";
 
-export const EditItem = () => {
+export const Edit = () => {
   const navigateTo = useNavigateTo();
   const { id } = useParams<{ id: string }>();
   const [form] = Form.useForm();

@@ -6,7 +6,7 @@ import { ItemModel } from "../../../../services/api/catalog/models/ItemModel";
 import { useCreateItemMutation } from "../../../../services/api/catalog/mutations/useCreateItemMutation";
 import { QUERIES } from "../../../../services/api/constants/Queries";
 
-export const CreateItem = () => {
+export const Create = () => {
   const [form] = Form.useForm();
   const navigateTo = useNavigateTo();
   const refreshQuery = useRefreshQuery();

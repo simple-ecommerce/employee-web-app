@@ -3,7 +3,7 @@ import { Template } from "../../../../components";
 import { useNavigateTo } from "../../../../hooks";
 import * as S from "./ListSpecifications.style";
 
-export const ListSpecifications = () => {
+export const List = () => {
   const navigateTo = useNavigateTo();
 
   return (

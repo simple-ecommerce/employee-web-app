@@ -6,7 +6,7 @@ import { useItemsQuery } from "../../../../services/api/catalog/queries/useItems
 import { useColumns } from "./hooks";
 import * as S from "./List.style";
 
-export const ListItems = () => {
+export const List = () => {
   const [page, setPage] = useState(1);
   const itemsQuery = useItemsQuery({ page, perPage: 50 });
   const navigateTo = useNavigateTo();

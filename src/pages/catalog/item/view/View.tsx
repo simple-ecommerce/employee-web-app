@@ -17,7 +17,7 @@ import { useRemoveItemMutation } from "../../../../services/api/catalog/mutation
 import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../services/api/constants/Queries";
 
-export const ViewItem = () => {
+export const View = () => {
   const { id } = useParams<{ id: string }>();
   const navigateTo = useNavigateTo();
   const itemQuery = useItemQuery({

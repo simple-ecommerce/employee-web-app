@@ -50,35 +50,35 @@ function App() {
           {/* CATALOG */}
           <Route
             path={Paths.Catalog.Item.Create}
-            element={<Pages.Catalog.CreateItem />}
+            element={<Pages.Catalog.Item.Create />}
           />
           <Route
             path={Paths.Catalog.Item.Edit}
-            element={<Pages.Catalog.EditItem />}
+            element={<Pages.Catalog.Item.Edit />}
           />
           <Route
             path={Paths.Catalog.Item.View}
-            element={<Pages.Catalog.ViewItem />}
+            element={<Pages.Catalog.Item.View />}
           />
           <Route
             path={Paths.Catalog.Item.List}
-            element={<Pages.Catalog.ListItems />}
+            element={<Pages.Catalog.Item.List />}
           />
           <Route
             path={Paths.Catalog.Specification.Create}
-            element={<Pages.Catalog.CreateSpecification />}
+            element={<Pages.Catalog.Specification.Create />}
           />
           <Route
             path={Paths.Catalog.Specification.Edit}
-            element={<Pages.Catalog.EditSpecification />}
+            element={<Pages.Catalog.Specification.Edit />}
           />
           <Route
             path={Paths.Catalog.Specification.View}
-            element={<Pages.Catalog.ViewSpecification />}
+            element={<Pages.Catalog.Specification.View />}
           />
           <Route
             path={Paths.Catalog.Specification.List}
-            element={<Pages.Catalog.ListSpecifications />}
+            element={<Pages.Catalog.Specification.List />}
           />
 
           {/* INVENTORY */}

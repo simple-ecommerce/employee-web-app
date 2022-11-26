@@ -3,7 +3,7 @@ import { Button, Divider, Form, Input, Space, Typography } from "antd";
 import { useState } from "react";
 import { Template } from "../../../../components";
 
-export const CreateSpecification = () => {
+export const Create = () => {
   const [form] = Form.useForm();
   const options = useState();
 
