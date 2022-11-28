@@ -8,7 +8,7 @@ import { SpecificationModel } from "../models/SpecificationModel";
 
 export class SpecificationCategoriesApi {
   static specifications = {
-    add: SpecificationCategoriesApi.create,
+    add: SpecificationCategoriesApi.createSpecification,
     remove: SpecificationCategoriesApi.removeSpecification,
   };
 
@@ -62,11 +62,11 @@ export class SpecificationCategoriesApi {
   }
 
   private static async createSpecification({
-    specificationId,
+    specificationCategoryId,
     ...data
   }: Omit<SpecificationModel, "id">) {
     return ApiService.post({
-      url: `/v1/catalog/specification_categories/${specificationId}/specifications`,
+      url: `/v1/catalog/specification_categories/${specificationCategoryId}/specifications`,
       data,
     });
   }

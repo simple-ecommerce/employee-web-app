@@ -3,5 +3,7 @@ import { MutationOptions } from "../../types/MutationOptions";
 import { SpecificationCategoriesApi } from "../clients/SpecificationCategoriesApi";
 
 export const useCreateSpecificationMutation = (
-  options: MutationOptions<typeof SpecificationCategoriesApi.create>
-) => useMutation(SpecificationCategoriesApi.create, options);
+  options?: MutationOptions<
+    typeof SpecificationCategoriesApi.specifications.add
+  >
+) => useMutation(SpecificationCategoriesApi.specifications.add, options);
