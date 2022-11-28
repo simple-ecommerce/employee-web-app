@@ -1,13 +1,17 @@
 import { Button, Form, Input, Modal, Space, Table, Typography } from "antd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useRefreshQuery } from "../../../../../../hooks";
 import { useCreateSpecificationMutation } from "../../../../../../services/api/catalog/mutations/useCreateSpecificationMutation";
+import { useRemoveSpecificationMutation } from "../../../../../../services/api/catalog/mutations/useRemoveSpecificationMutation";
 import { useSpecificationCategoryQuery } from "../../../../../../services/api/catalog/queries/useSpecificationCategoryQuery";
+import { ActionsCell } from "./components";
 import * as S from "./OptionsList.style";
 
 export const OptionsList = () => {
   const [form] = Form.useForm();
   const { id } = useParams();
+
   const specificationCategoryQuery = useSpecificationCategoryQuery({
     id: id ? Number(id) : 0,
     options: { enabled: !!id },
@@ -19,6 +23,7 @@ export const OptionsList = () => {
       form.resetFields();
     },
   });
+  const removeSpecificationMutation = useRemoveSpecificationMutation();
   const [isCreateOptionModalOpen, setIsCreateOptionModalOpen] = useState(false);
 
   return (
@@ -47,7 +52,17 @@ export const OptionsList = () => {
           {
             title: "Description",
             dataIndex: "description",
-            width: "70%",
+            width: "60%",
+          },
+          {
+            title: "Actions",
+            render: (_, specification) => (
+              <ActionsCell
+                specification={specification}
+                specificationCategory={specificationCategoryQuery.data}
+              />
+            ),
+            width: "10%",
           },
         ]}
         dataSource={specificationCategoryQuery.data?.specifications ?? []}
