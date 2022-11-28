@@ -1,10 +1,17 @@
 import { Button, Table, Tag, Typography } from "antd";
+import { useState } from "react";
 import { Template } from "../../../../components";
 import { useNavigateTo } from "../../../../hooks";
+import { useSpecificationCategoriesQuery } from "../../../../services/api/catalog/queries/useSpecificationCategoriesQuery";
 import * as S from "./ListSpecifications.style";
 
 export const List = () => {
   const navigateTo = useNavigateTo();
+  const [page, setPage] = useState(1);
+  const specificationCategoriesQuery = useSpecificationCategoriesQuery({
+    page,
+    perPage: 50,
+  });
 
   return (
     <>
@@ -23,16 +30,19 @@ export const List = () => {
           </S.Header.Container>
 
           <Table
+            loading={specificationCategoriesQuery.isLoading}
             expandable={{
-              expandedRowRender: (specification) => {
+              expandedRowRender: (specificationCategory) => {
+                if (!specificationCategory.specifications.length)
+                  return <Typography.Text>No specifications</Typography.Text>;
+
                 return (
                   <>
-                    {specification.options.map(({ id, name }) => (
-                      <Tag key={id}>{name}</Tag>
-                    ))}
-                    <Tag>Red</Tag>
-                    <Tag>Green</Tag>
-                    <Tag>Blue</Tag>
+                    {specificationCategory.specifications.map(
+                      ({ id, name }) => (
+                        <Tag key={id}>{name}</Tag>
+                      )
+                    )}
                   </>
                 );
               },
@@ -42,6 +52,7 @@ export const List = () => {
               {
                 title: "Category",
                 key: "name",
+                width: "20%",
                 dataIndex: "name",
                 render: (_, specification) => {
                   return (
@@ -57,38 +68,28 @@ export const List = () => {
                 },
               },
               {
+                title: "Internal Name",
+                width: "20%",
+                key: "internalName",
+                dataIndex: "internalName",
+              },
+              {
                 title: "Description",
-                width: "70%",
+                width: "60%",
                 key: "description",
                 dataIndex: "description",
               },
             ]}
-            dataSource={[
-              {
-                id: 1,
-                name: "Color",
-                key: 1,
-                description: "Color of the item",
-                options: [
-                  { id: 1, name: "Red" },
-                  { id: 2, name: "Green" },
-                  { id: 3, name: "Blue" },
-                ],
-              },
-              {
-                id: 2,
-                name: "Size",
-                key: 2,
-                description: "Size of the item",
-                options: [
-                  { id: 4, name: "P" },
-                  { id: 5, name: "M" },
-                  { id: 6, name: "G" },
-                  { id: 7, name: "GG" },
-                  { id: 8, name: "XL" },
-                ],
-              },
-            ]}
+            pagination={{
+              current:
+                specificationCategoriesQuery.data?.pagination.currentPage,
+              total: specificationCategoriesQuery.data?.pagination.totalCount,
+              pageSize: specificationCategoriesQuery.data?.pagination.perPage,
+            }}
+            onChange={(pagination) => {
+              if (pagination.current) setPage(pagination.current);
+            }}
+            dataSource={specificationCategoriesQuery.data?.results ?? []}
           />
         </Template.Content>
       </Template>

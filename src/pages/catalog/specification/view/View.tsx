@@ -2,34 +2,45 @@ import {
   Breadcrumb,
   Button,
   Popconfirm,
+  Skeleton,
   Space,
   Table,
-  Tag,
   Typography,
 } from "antd";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { Template } from "../../../../components";
-import { useNavigateTo } from "../../../../hooks";
+import { useNavigateTo, useRefreshQuery } from "../../../../hooks";
+import { useRemoveSpecificationCategoryMutation } from "../../../../services/api/catalog/mutations/useRemoveSpecificationCategoryMutation";
+import { useSpecificationCategoryQuery } from "../../../../services/api/catalog/queries/useSpecificationCategoryQuery";
+import { QUERIES } from "../../../../services/api/constants/Queries";
 import { OptionsList } from "./components";
 
 export const View = () => {
+  const { id } = useParams();
+  const refreshQuery = useRefreshQuery();
   const navigateTo = useNavigateTo();
-  const specificationQuery = {
-    data: { id: 1, name: "Specification name" },
-  };
-  const removeSpecificationMutation = {
-    mutate: (params: any) => {},
-    isLoading: false,
-  };
+  const specificationCategoryQuery = useSpecificationCategoryQuery({
+    id: id ? Number(id) : 0,
+    options: { enabled: !!id },
+  });
+  const removeSpecificationCategoryMutation =
+    useRemoveSpecificationCategoryMutation({
+      onSuccess: async () => {
+        await refreshQuery([QUERIES.CATALOG.SPECIFICATION_CATEGORIES]);
+        navigateTo.catalog.specification.list();
+      },
+    });
   const [isConfirmRemovePopupOpen, setIsConfirmRemovePopupOpen] =
     useState(false);
 
+  if (specificationCategoryQuery.isLoading) return <Skeleton active />;
   return (
     <Template>
       <Template.Header>
         <Space size={1} direction="vertical">
           <Typography.Title level={3}>
-            {specificationQuery.data?.name ?? ""}
+            {specificationCategoryQuery.data?.name ?? ""}
           </Typography.Title>
           <Breadcrumb>
             <Breadcrumb.Item
@@ -41,7 +52,9 @@ export const View = () => {
             >
               Specifications
             </Breadcrumb.Item>
-            <Breadcrumb.Item>{specificationQuery.data?.name}</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              {specificationCategoryQuery.data?.name}
+            </Breadcrumb.Item>
           </Breadcrumb>
         </Space>
         <Space>
@@ -50,12 +63,12 @@ export const View = () => {
             title="Remove item?"
             open={isConfirmRemovePopupOpen}
             onConfirm={() =>
-              removeSpecificationMutation.mutate({
-                id: specificationQuery.data?.id ?? 0,
+              removeSpecificationCategoryMutation.mutate({
+                id: specificationCategoryQuery.data?.id ?? 0,
               })
             }
             okButtonProps={{
-              loading: removeSpecificationMutation.isLoading,
+              loading: removeSpecificationCategoryMutation.isLoading,
             }}
             onCancel={() => setIsConfirmRemovePopupOpen(false)}
           >
@@ -70,7 +83,7 @@ export const View = () => {
             size="large"
             onClick={() => {
               navigateTo.catalog.specification.edit(
-                specificationQuery?.data?.id ?? 0
+                specificationCategoryQuery?.data?.id ?? 0
               );
             }}
             type="primary"
@@ -98,11 +111,25 @@ export const View = () => {
             pagination={false}
             showHeader={false}
             dataSource={[
-              { key: "id", name: "ID", value: specificationQuery.data?.id },
+              {
+                key: "id",
+                name: "ID",
+                value: specificationCategoryQuery.data?.id,
+              },
               {
                 key: "name",
                 name: "Name",
-                value: specificationQuery.data?.name,
+                value: specificationCategoryQuery.data?.name,
+              },
+              {
+                key: "internalName",
+                name: "Internal Name",
+                value: specificationCategoryQuery.data?.internalName,
+              },
+              {
+                key: "description",
+                name: "Description",
+                value: specificationCategoryQuery.data?.description,
               },
             ]}
           />

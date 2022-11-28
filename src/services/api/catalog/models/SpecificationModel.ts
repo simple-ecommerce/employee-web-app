@@ -1,9 +1,8 @@
+import { Id } from "../../../../aliases/Id";
 import { Identifiable } from "../../types/Identifiable";
-import { SpecificationOptionModel } from "./SpecificationOptionModel";
 
 export interface SpecificationModel extends Identifiable {
   name: string;
-  desciption: string;
-  internalName: string;
-  options: SpecificationOptionModel[];
+  description: string;
+  specificationId: Id;
 }

@@ -1,7 +1,7 @@
 import { Identifiable } from "../../types/Identifiable";
 import { ApiService } from "../../ApiService";
 import { ItemModel } from "../models/ItemModel";
-import { PaginatedResponse } from "../../types/PaginatedReponse";
+import { PaginatedResponse } from "../../types/PaginatedResponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 
 export class ItemsApi {

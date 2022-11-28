@@ -1,31 +1,58 @@
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input, Space, Typography } from "antd";
-import { useState } from "react";
+import { Button, Form, Input, Space, Typography } from "antd";
 import { Template } from "../../../../components";
+import { useNavigateTo } from "../../../../hooks";
+import { useCreateSpecificationCategoryMutation } from "../../../../services/api/catalog/mutations/useCreateSpecificationCategoryMutation";
 
 export const Create = () => {
   const [form] = Form.useForm();
-  const options = useState();
+  const navigateTo = useNavigateTo();
+  const createSpecificationCategoryMutation =
+    useCreateSpecificationCategoryMutation({
+      onSuccess: ({ id }) => navigateTo.catalog.specification.view(id),
+    });
 
   return (
     <Template>
       <Template.Header>
         <Typography.Title level={3}>Create Specification</Typography.Title>
         <Space>
-          <Button size="large" type="default">
+          <Button
+            size="large"
+            onClick={navigateTo.catalog.specification.list}
+            type="default"
+          >
             Cancel
           </Button>
-          <Button size="large" type="primary">
+          <Button onClick={form.submit} size="large" type="primary">
             Create
           </Button>
         </Space>
       </Template.Header>
       <Template.Content>
-        <Form layout="vertical" form={form}>
-          <Form.Item label="Name" name="name">
+        <Form
+          layout="vertical"
+          onFinish={createSpecificationCategoryMutation.mutate}
+          form={form}
+        >
+          <Form.Item
+            rules={[{ required: true, whitespace: false }]}
+            label="Name"
+            name="name"
+          >
             <Input />
           </Form.Item>
-          <Form.Item label="Description" name="description">
+          <Form.Item
+            rules={[{ required: true }]}
+            label="Description"
+            name="description"
+          >
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item
+            rules={[{ required: true }]}
+            label="Internal Name"
+            name="internalName"
+          >
             <Input.TextArea />
           </Form.Item>
         </Form>
