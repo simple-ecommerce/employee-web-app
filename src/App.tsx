@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import { Sidebar } from "./components";
 import { Paths } from "./constants/Paths";
+import { useLoadCompany } from "./hooks";
 
 function App() {
   const isAuthenticated = AuthStore.use.isAuthenticated();
   const isLoading = AuthStore.use.isLoading();
+  const companyId = useLoadCompany();
 
   useEffect(() => {
     const cookies = parseCookies();
@@ -21,7 +23,7 @@ function App() {
     AuthStore.set.isLoading(false);
   }, []);
 
-  if (isLoading) return null;
+  if (isLoading || !companyId) return null;
 
   if (!isAuthenticated)
     return (
