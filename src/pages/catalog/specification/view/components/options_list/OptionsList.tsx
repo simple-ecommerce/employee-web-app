@@ -77,6 +77,7 @@ export const OptionsList = () => {
         onOk={form.submit}
       >
         <Form
+          requiredMark="optional"
           form={form}
           layout="vertical"
           onFinish={(data) =>

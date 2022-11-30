@@ -37,13 +37,32 @@ export const Create = () => {
               <Breadcrumb.Item>Create Item</Breadcrumb.Item>
             </Breadcrumb>
           </Space>
+          <Space>
+            <Button
+              size="large"
+              block
+              type="default"
+              onClick={() => navigateTo.catalog.item.list()}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={form.submit}
+              size="large"
+              block
+              htmlType="submit"
+              type="primary"
+            >
+              Create
+            </Button>
+          </Space>
         </Template.Header>
         <Template.Content>
           <Form
             form={form}
             layout="vertical"
-            onFinish={createItemMutation.mutate}
             requiredMark="optional"
+            onFinish={createItemMutation.mutate}
           >
             <Form.Item
               rules={[{ required: true, whitespace: false }]}
@@ -105,18 +124,6 @@ export const Create = () => {
             >
               <Input />
             </Form.Item>
-            <Form.Item>
-              <Button block htmlType="submit" type="primary">
-                Create
-              </Button>
-            </Form.Item>
-            <Button
-              block
-              type="default"
-              onClick={() => navigateTo.catalog.item.list()}
-            >
-              Cancel
-            </Button>
           </Form>
         </Template.Content>
       </Template>

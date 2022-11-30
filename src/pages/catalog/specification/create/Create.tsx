@@ -30,6 +30,7 @@ export const Create = () => {
       </Template.Header>
       <Template.Content>
         <Form
+          requiredMark="optional"
           layout="vertical"
           onFinish={createSpecificationCategoryMutation.mutate}
           form={form}

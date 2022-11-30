@@ -86,6 +86,7 @@ export const Edit = () => {
       </Template.Header>
       <Template.Content>
         <Form
+          requiredMark="optional"
           initialValues={specificationCategoryQuery.data}
           layout="vertical"
           onFinish={onFinish}

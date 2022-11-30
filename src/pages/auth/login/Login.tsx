@@ -24,7 +24,12 @@ export const Login = () => {
     <S.Wrapper>
       <S.Container>
         <Space direction="vertical" size={"middle"}>
-          <Form form={form} layout="vertical" onFinish={loginMutation.mutate}>
+          <Form
+            form={form}
+            layout="vertical"
+            requiredMark="optional"
+            onFinish={loginMutation.mutate}
+          >
             <Form.Item
               rules={[{ required: true, whitespace: false }]}
               name="email"
