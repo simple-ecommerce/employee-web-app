@@ -5,6 +5,7 @@ import { PaginatedResponse } from "../../types/PaginatedResponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 import { SpecificationCategoryModel } from "../models/SpecificationCategoryModel";
 import { SpecificationModel } from "../models/SpecificationModel";
+import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 
 export class SpecificationCategoriesApi {
   static specifications = {
@@ -15,28 +16,32 @@ export class SpecificationCategoriesApi {
   static async list({
     page,
     perPage,
-  }: PaginatedRequestPayload): Promise<
+    companyId,
+  }: PaginatedRequestPayload & PayloadWithCompanyId): Promise<
     PaginatedResponse<SpecificationCategoryModel>
   > {
     return ApiService.get({
       url: "/v1/catalog/specification_categories",
-      params: { page, perPage },
+      params: { page, perPage, companyId },
     });
   }
 
-  static async show({ id }: Identifiable): Promise<SpecificationCategoryModel> {
+  static async show({
+    id,
+    companyId,
+  }: Identifiable & PayloadWithCompanyId): Promise<SpecificationCategoryModel> {
     return ApiService.get({
       url: `/v1/catalog/specification_categories/${id}`,
+      params: { companyId },
     });
   }
 
   static async update({
     id,
     ...data
-  }: Identifiable &
-    Partial<
-      Omit<SpecificationCategoryModel, "id" | "options">
-    >): Promise<SpecificationCategoryModel> {
+  }: Partial<Omit<SpecificationCategoryModel, "id" | "options">> &
+    Identifiable &
+    PayloadWithCompanyId): Promise<SpecificationCategoryModel> {
     return ApiService.patch({
       url: `/v1/catalog/specification_categories/${id}`,
       data,
@@ -45,7 +50,8 @@ export class SpecificationCategoriesApi {
 
   static async create(
     specification: Partial<Omit<SpecificationCategoryModel, "id" | "options">> &
-      Identifiable
+      Identifiable &
+      PayloadWithCompanyId
   ): Promise<SpecificationCategoryModel> {
     return ApiService.post({
       url: `/v1/catalog/specification_categories`,
@@ -55,16 +61,18 @@ export class SpecificationCategoriesApi {
 
   static async remove({
     id,
-  }: Identifiable): Promise<SpecificationCategoryModel> {
+    companyId,
+  }: Identifiable & PayloadWithCompanyId): Promise<SpecificationCategoryModel> {
     return ApiService.delete({
       url: `/v1/catalog/specification_categories/${id}`,
+      params: { companyId },
     });
   }
 
   private static async createSpecification({
     specificationCategoryId,
     ...data
-  }: Omit<SpecificationModel, "id">) {
+  }: Omit<SpecificationModel, "id"> & PayloadWithCompanyId) {
     return ApiService.post({
       url: `/v1/catalog/specification_categories/${specificationCategoryId}/specifications`,
       data,
