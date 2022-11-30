@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { ApplicationStore } from "../../../stores/application/ApplicationStore";
 import { QUERIES } from "../../constants/Queries";
 import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 import { QueryOptions } from "../../types/QueryOptions";
@@ -10,13 +11,16 @@ export const useSpecificationCategoryQuery = ({
 }: {
   id: number;
   options?: QueryOptions<typeof SpecificationCategoriesApi.show>;
-}) =>
-  useQuery(
-    [QUERIES.CATALOG.SPECIFICATION_CATEGORY, id],
-    (context) =>
+}) => {
+  const companyId = ApplicationStore.use.companyId() as number;
+
+  return useQuery(
+    [QUERIES.CATALOG.SPECIFICATION_CATEGORY, id, companyId],
+    () =>
       SpecificationCategoriesApi.show({
         id,
-        companyId: context?.meta?.companyId as number,
+        companyId,
       }),
     options
   );
+};

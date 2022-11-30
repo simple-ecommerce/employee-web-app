@@ -3,6 +3,7 @@ import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 import { QueryOptions } from "../../types/QueryOptions";
 import { ItemsApi } from "../clients/ItemsApi";
 import { QUERIES } from "../../constants/Queries";
+import { ApplicationStore } from "../../../stores/application/ApplicationStore";
 
 export const useItemsQuery = ({
   options,
@@ -10,14 +11,17 @@ export const useItemsQuery = ({
   perPage = 10000,
 }: {
   options?: QueryOptions<typeof ItemsApi.list>;
-} & Partial<PaginatedRequestPayload>) =>
-  useQuery(
-    [QUERIES.CATALOG.ITEMS, page, perPage],
-    (context) =>
+} & Partial<PaginatedRequestPayload>) => {
+  const companyId = ApplicationStore.use.companyId() as number;
+
+  return useQuery(
+    [QUERIES.CATALOG.ITEMS, page, perPage, companyId],
+    () =>
       ItemsApi.list({
         page,
         perPage,
-        companyId: context?.meta?.companyId as number,
+        companyId,
       }),
     options
   );
+};

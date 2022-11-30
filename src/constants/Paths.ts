@@ -5,15 +5,15 @@ export const Paths = {
   Catalog: {
     Item: {
       List: "/catalog/items",
-      Create: "/catalog/item/create",
-      Edit: "/catalog/item/:id/edit",
-      View: "/catalog/item/:id",
+      Create: "/catalog/items/create",
+      Edit: "/catalog/items/:id/edit",
+      View: "/catalog/items/:id",
     },
     Specification: {
       List: "/catalog/specifications",
-      View: "/catalog/specification/:id",
-      Create: "/catalog/specification/create",
-      Edit: "/catalog/specification/:id/edit",
+      View: "/catalog/specifications/:id",
+      Create: "/catalog/specifications/create",
+      Edit: "/catalog/specifications/:id/edit",
     },
   },
   Inventory: {
