@@ -2,25 +2,22 @@ import { ApiService } from "../../ApiService";
 
 export class TokenApi {
   static async login({
-    companyId,
     email,
     password,
   }: {
     email: string;
     password: string;
-    companyId: number;
   }): Promise<{ accessToken: string; refreshToken: string }> {
     const response = await ApiService.post<
       {
         email: string;
         password: string;
-        companyId: number;
       },
       {
         accessToken: string;
         refreshToken: string;
       }
-    >({ url: "/v1/authorization/login", data: { companyId, email, password } });
+    >({ url: "/v1/authorization/login", data: { email, password } });
 
     return response;
   }

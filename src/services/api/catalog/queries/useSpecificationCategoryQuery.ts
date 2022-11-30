@@ -7,13 +7,16 @@ import { SpecificationCategoriesApi } from "../clients/SpecificationCategoriesAp
 export const useSpecificationCategoryQuery = ({
   id,
   options,
-  companyId,
 }: {
   id: number;
   options?: QueryOptions<typeof SpecificationCategoriesApi.show>;
-} & PayloadWithCompanyId) =>
+}) =>
   useQuery(
     [QUERIES.CATALOG.SPECIFICATION_CATEGORY, id],
-    () => SpecificationCategoriesApi.show({ id, companyId }),
+    (context) =>
+      SpecificationCategoriesApi.show({
+        id,
+        companyId: context?.meta?.companyId as number,
+      }),
     options
   );

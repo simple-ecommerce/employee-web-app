@@ -7,14 +7,13 @@ import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 
 export const useItemQuery = ({
   id,
-  companyId,
   options,
 }: {
   options: QueryOptions<typeof ItemsApi.show>;
-} & Identifiable &
-  PayloadWithCompanyId) =>
+} & Identifiable) =>
   useQuery(
     [QUERIES.CATALOG.ITEM, id],
-    () => ItemsApi.show({ id, companyId }),
+    (context) =>
+      ItemsApi.show({ id, companyId: context?.meta?.companyId as number }),
     options
   );

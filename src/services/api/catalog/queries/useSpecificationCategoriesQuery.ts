@@ -8,14 +8,18 @@ export const useSpecificationCategoriesQuery = ({
   page,
   perPage,
   options,
-  companyId,
 }: {
   page: number;
   perPage: number;
   options?: QueryOptions<typeof SpecificationCategoriesApi.list>;
-} & PayloadWithCompanyId) =>
+}) =>
   useQuery(
     [QUERIES.CATALOG.SPECIFICATION_CATEGORIES, page, perPage],
-    () => SpecificationCategoriesApi.list({ page, perPage, companyId }),
+    (context) =>
+      SpecificationCategoriesApi.list({
+        page,
+        perPage,
+        companyId: context?.meta?.companyId as number,
+      }),
     options
   );

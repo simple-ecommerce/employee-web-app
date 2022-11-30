@@ -27,13 +27,6 @@ export const Login = () => {
           <Form form={form} layout="vertical" onFinish={loginMutation.mutate}>
             <Form.Item
               rules={[{ required: true, whitespace: false }]}
-              name="companyId"
-              label="Company Id"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              rules={[{ required: true, whitespace: false }]}
               name="email"
               label="Email"
             >
