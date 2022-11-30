@@ -1,5 +1,6 @@
 import * as S from "./Sidebar.style";
 import { useItems, useOnClick, useSelectedKeys } from "./hooks";
+import { CompanySelector } from "./components";
 
 export const Sidebar = () => {
   const selectedKeys = useSelectedKeys();
@@ -7,11 +8,14 @@ export const Sidebar = () => {
   const onClick = useOnClick();
 
   return (
-    <S.Menu
-      onClick={onClick}
-      selectedKeys={selectedKeys}
-      mode="inline"
-      items={items}
-    />
+    <S.Container>
+      <CompanySelector />
+      <S.Menu
+        onClick={onClick}
+        selectedKeys={selectedKeys}
+        mode="inline"
+        items={items}
+      />
+    </S.Container>
   );
 };
