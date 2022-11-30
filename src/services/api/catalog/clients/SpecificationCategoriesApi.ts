@@ -82,12 +82,14 @@ export class SpecificationCategoriesApi {
   private static async removeSpecification({
     specificationCategoryId,
     specificationId,
+    companyId,
   }: {
     specificationCategoryId: Id;
     specificationId: Id;
+    companyId: Id;
   }) {
     return ApiService.delete({
-      url: `/v1/catalog/specification_categories/${specificationCategoryId}/specifications/${specificationId}`,
+      url: `/v1/catalog/specification_categories/${specificationCategoryId}/specifications/${specificationId}?company_id=${companyId}`,
     });
   }
 }
