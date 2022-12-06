@@ -18,12 +18,11 @@ function App() {
   useEffect(() => {
     const cookies = parseCookies();
     const isAuthenticated = !!cookies["ecommerce.refresh_token"];
-
     AuthStore.set.isAuthenticated(isAuthenticated);
     AuthStore.set.isLoading(false);
   }, []);
 
-  if (isLoading || !companyId) return null;
+  if (isLoading || (isAuthenticated && !companyId)) return null;
 
   if (!isAuthenticated)
     return (
