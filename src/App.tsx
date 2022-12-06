@@ -29,8 +29,7 @@ function App() {
       <Layout>
         <Layout.Content>
           <Routes>
-            <Route path={Paths.Auth.Login} element={<Pages.Auth.Login />} />
-            <Route path="/" element={<Pages.Auth.Login />} />
+            <Route path="/*" element={<Pages.Auth.Login />} />
           </Routes>
         </Layout.Content>
       </Layout>
