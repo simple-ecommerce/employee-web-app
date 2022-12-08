@@ -1,3 +1,3 @@
-import { Page } from "./components";
+import { Page, Table } from "./components";
 
-export const Template = { Page };
+export const Template = { Page, Table };

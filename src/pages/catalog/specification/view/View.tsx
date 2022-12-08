@@ -14,7 +14,7 @@ import { useNavigateTo, useRefreshQuery } from "../../../../hooks";
 import { useRemoveSpecificationCategoryMutation } from "../../../../services/api/catalog/mutations/useRemoveSpecificationCategoryMutation";
 import { useSpecificationCategoryQuery } from "../../../../services/api/catalog/queries/useSpecificationCategoryQuery";
 import { QUERIES } from "../../../../services/api/constants/Queries";
-import { OptionsList } from "./components";
+import { InfoList, OptionsList } from "./components";
 
 export const View = () => {
   const { id } = useParams();
@@ -93,50 +93,8 @@ export const View = () => {
         </Space>
       </Template.Page.Header>
       <Template.Page.Content>
-        <Template.Page.Content.Section>
-          <Typography.Title level={5}>Info</Typography.Title>
-          <Table
-            columns={[
-              {
-                title: "Name",
-                dataIndex: "name",
-                key: "name",
-              },
-              {
-                title: "Value",
-                dataIndex: "value",
-                key: "value",
-              },
-            ]}
-            pagination={false}
-            showHeader={false}
-            dataSource={[
-              {
-                key: "id",
-                name: "ID",
-                value: specificationCategoryQuery.data?.id,
-              },
-              {
-                key: "name",
-                name: "Name",
-                value: specificationCategoryQuery.data?.name,
-              },
-              {
-                key: "internalName",
-                name: "Internal Name",
-                value: specificationCategoryQuery.data?.internalName,
-              },
-              {
-                key: "description",
-                name: "Description",
-                value: specificationCategoryQuery.data?.description,
-              },
-            ]}
-          />
-        </Template.Page.Content.Section>
-        <Template.Page.Content.Section>
-          <OptionsList />
-        </Template.Page.Content.Section>
+        <InfoList />
+        <OptionsList />
       </Template.Page.Content>
     </Template.Page>
   );
