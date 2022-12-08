@@ -4,8 +4,15 @@ import { ItemModel } from "../models/ItemModel";
 import { PaginatedResponse } from "../../types/PaginatedResponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
+import { Id } from "../../../../aliases/Id";
 
 export class ItemsApi {
+  static Specifications = {
+    add: ItemsApi.addSpecification,
+    remove: ItemsApi.removeSpecification,
+    list: ItemsApi.listSpecifications,
+  };
+
   static async list({
     page,
     perPage,
@@ -55,6 +62,51 @@ export class ItemsApi {
     return ApiService.delete({
       url: `/v1/catalog/items/${id}`,
       params: { companyId },
+    });
+  }
+
+  static async listSpecifications({
+    itemId,
+    companyId,
+  }: {
+    itemId: Id;
+    companyId: Id;
+  }) {
+    return ApiService.get({
+      url: `/v1/catalog/items/${itemId}/specifications`,
+      params: { companyId },
+    });
+  }
+
+  static async removeSpecification({
+    companyId,
+    itemId,
+    specificationId,
+  }: {
+    itemId: Id;
+    companyId: Id;
+    specificationId: Id;
+  }) {
+    return ApiService.delete({
+      url: `/v1/catalog/items/${itemId}/specifications/${specificationId}`,
+      params: { companyId },
+    });
+  }
+
+  static async addSpecification({
+    companyId,
+    itemId,
+    specificationId,
+    priceExtra = 0,
+  }: {
+    itemId: Id;
+    companyId: Id;
+    specificationId: Id;
+    priceExtra?: number;
+  }) {
+    return ApiService.post({
+      url: `/v1/catalog/items/${itemId}/specifications/${specificationId}`,
+      data: { companyId, priceExtra },
     });
   }
 }
