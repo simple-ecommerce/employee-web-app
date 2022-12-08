@@ -68,8 +68,8 @@ export const Edit = () => {
   );
 
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Typography.Title level={3}>Edit Specification</Typography.Title>
         <Space>
           <Button
@@ -83,8 +83,8 @@ export const Edit = () => {
             Save
           </Button>
         </Space>
-      </Template.Header>
-      <Template.Content>
+      </Template.Page.Header>
+      <Template.Page.Content>
         <Form
           requiredMark="optional"
           initialValues={specificationCategoryQuery.data}
@@ -114,7 +114,7 @@ export const Edit = () => {
             <Input.TextArea />
           </Form.Item>
         </Form>
-      </Template.Content>
-    </Template>
+      </Template.Page.Content>
+    </Template.Page>
   );
 };

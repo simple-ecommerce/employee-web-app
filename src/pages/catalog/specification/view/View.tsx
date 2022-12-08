@@ -36,8 +36,8 @@ export const View = () => {
 
   if (specificationCategoryQuery.isLoading) return <Skeleton active />;
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Space size={1} direction="vertical">
           <Typography.Title level={3}>
             {specificationCategoryQuery.data?.name ?? ""}
@@ -91,9 +91,9 @@ export const View = () => {
             Edit
           </Button>
         </Space>
-      </Template.Header>
-      <Template.Content>
-        <Template.Content.Section>
+      </Template.Page.Header>
+      <Template.Page.Content>
+        <Template.Page.Content.Section>
           <Typography.Title level={5}>Info</Typography.Title>
           <Table
             columns={[
@@ -133,11 +133,11 @@ export const View = () => {
               },
             ]}
           />
-        </Template.Content.Section>
-        <Template.Content.Section>
+        </Template.Page.Content.Section>
+        <Template.Page.Content.Section>
           <OptionsList />
-        </Template.Content.Section>
-      </Template.Content>
-    </Template>
+        </Template.Page.Content.Section>
+      </Template.Page.Content>
+    </Template.Page>
   );
 };

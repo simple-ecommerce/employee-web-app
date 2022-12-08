@@ -16,6 +16,7 @@ import { ItemModel } from "../../../../services/api/catalog/models/ItemModel";
 import { useRemoveItemMutation } from "../../../../services/api/catalog/mutations/useRemoveItemMutation";
 import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../services/api/constants/Queries";
+import { InfoList, SpecificationsList } from "./components";
 
 export const View = () => {
   const { id } = useParams<{ id: string }>();
@@ -37,8 +38,8 @@ export const View = () => {
   if (itemQuery.isLoading) return <Skeleton active />;
 
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Space size={1} direction="vertical">
           <Typography.Title level={3}>
             {itemQuery.data?.name ?? ""}
@@ -84,43 +85,11 @@ export const View = () => {
             Edit
           </Button>
         </Space>
-      </Template.Header>
-      <Template.Content>
-        <Table
-          columns={[
-            {
-              title: "Name",
-              dataIndex: "name",
-              key: "name",
-            },
-            {
-              title: "Value",
-              dataIndex: "value",
-              key: "value",
-            },
-          ]}
-          pagination={false}
-          showHeader={false}
-          dataSource={[
-            "id",
-            "name",
-            "shortDescription",
-            "longDescription",
-            "price",
-            "sku",
-            "ean",
-            "upc",
-            "gtin",
-            "brand",
-            "createdAt",
-            "updatedAt",
-          ].map((key) => ({
-            key,
-            name: ItemLabels[key as keyof ItemModel] ?? key,
-            value: itemQuery.data?.[key as keyof typeof itemQuery.data] ?? "-",
-          }))}
-        />
-      </Template.Content>
-    </Template>
+      </Template.Page.Header>
+      <Template.Page.Content>
+        <InfoList item={itemQuery.data} />
+        <SpecificationsList />
+      </Template.Page.Content>
+    </Template.Page>
   );
 };

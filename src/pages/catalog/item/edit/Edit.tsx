@@ -26,8 +26,8 @@ export const Edit = () => {
   if (itemQuery.isLoading) return <Skeleton active />;
 
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Space direction="vertical">
           <Typography.Title level={3}>{`Edit Item ${id}`}</Typography.Title>
           <Breadcrumb>
@@ -65,8 +65,8 @@ export const Edit = () => {
             Save
           </Button>
         </Space>
-      </Template.Header>
-      <Template.Content>
+      </Template.Page.Header>
+      <Template.Page.Content>
         <Form
           initialValues={itemQuery.data}
           form={form}
@@ -135,7 +135,7 @@ export const Edit = () => {
             <Input />
           </Form.Item>
         </Form>
-      </Template.Content>
-    </Template>
+      </Template.Page.Content>
+    </Template.Page>
   );
 };

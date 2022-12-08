@@ -13,11 +13,11 @@ export const List = () => {
   const columns = useColumns();
 
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Typography.Title level={3}>Items</Typography.Title>
-      </Template.Header>
-      <Template.Content>
+      </Template.Page.Header>
+      <Template.Page.Content>
         <S.Header.Container>
           <Button
             onClick={() => {
@@ -42,7 +42,7 @@ export const List = () => {
             if (pagination.current) setPage(pagination.current);
           }}
         />
-      </Template.Content>
-    </Template>
+      </Template.Page.Content>
+    </Template.Page>
   );
 };

@@ -15,11 +15,11 @@ export const List = () => {
 
   return (
     <>
-      <Template>
-        <Template.Header>
+      <Template.Page>
+        <Template.Page.Header>
           <Typography.Title level={3}>Specifications</Typography.Title>
-        </Template.Header>
-        <Template.Content>
+        </Template.Page.Header>
+        <Template.Page.Content>
           <S.Header.Container>
             <Button
               type="primary"
@@ -91,8 +91,8 @@ export const List = () => {
             }}
             dataSource={specificationCategoriesQuery.data?.results ?? []}
           />
-        </Template.Content>
-      </Template>
+        </Template.Page.Content>
+      </Template.Page>
     </>
   );
 };

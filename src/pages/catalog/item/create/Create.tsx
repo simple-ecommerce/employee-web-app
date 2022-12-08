@@ -20,8 +20,8 @@ export const Create = () => {
 
   return (
     <>
-      <Template>
-        <Template.Header>
+      <Template.Page>
+        <Template.Page.Header>
           <Space size={1} direction="vertical">
             <Typography.Title level={3}>Create Item</Typography.Title>
             <Breadcrumb>
@@ -56,8 +56,8 @@ export const Create = () => {
               Create
             </Button>
           </Space>
-        </Template.Header>
-        <Template.Content>
+        </Template.Page.Header>
+        <Template.Page.Content>
           <Form
             form={form}
             layout="vertical"
@@ -125,8 +125,8 @@ export const Create = () => {
               <Input />
             </Form.Item>
           </Form>
-        </Template.Content>
-      </Template>
+        </Template.Page.Content>
+      </Template.Page>
     </>
   );
 };

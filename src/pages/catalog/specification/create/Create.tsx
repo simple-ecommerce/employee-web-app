@@ -12,8 +12,8 @@ export const Create = () => {
     });
 
   return (
-    <Template>
-      <Template.Header>
+    <Template.Page>
+      <Template.Page.Header>
         <Typography.Title level={3}>Create Specification</Typography.Title>
         <Space>
           <Button
@@ -27,8 +27,8 @@ export const Create = () => {
             Create
           </Button>
         </Space>
-      </Template.Header>
-      <Template.Content>
+      </Template.Page.Header>
+      <Template.Page.Content>
         <Form
           requiredMark="optional"
           layout="vertical"
@@ -57,7 +57,7 @@ export const Create = () => {
             <Input.TextArea />
           </Form.Item>
         </Form>
-      </Template.Content>
-    </Template>
+      </Template.Page.Content>
+    </Template.Page>
   );
 };
