@@ -68,13 +68,15 @@ export class ItemsApi {
   static async listSpecifications({
     itemId,
     companyId,
+    page,
+    perPage,
   }: {
     itemId: Id;
     companyId: Id;
-  }) {
+  } & PaginatedRequestPayload) {
     return ApiService.get({
       url: `/v1/catalog/items/${itemId}/specifications`,
-      params: { companyId },
+      params: { companyId, perPage, page },
     });
   }
 

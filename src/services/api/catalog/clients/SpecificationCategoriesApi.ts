@@ -17,12 +17,13 @@ export class SpecificationCategoriesApi {
     page,
     perPage,
     companyId,
-  }: PaginatedRequestPayload & PayloadWithCompanyId): Promise<
+    itemId,
+  }: { itemId?: Id } & PaginatedRequestPayload & PayloadWithCompanyId): Promise<
     PaginatedResponse<SpecificationCategoryModel>
   > {
     return ApiService.get({
       url: "/v1/catalog/specification_categories",
-      params: { page, perPage, companyId },
+      params: { page, perPage, companyId, itemId },
     });
   }
 

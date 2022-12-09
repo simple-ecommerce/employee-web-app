@@ -88,7 +88,7 @@ export const View = () => {
       </Template.Page.Header>
       <Template.Page.Content>
         <InfoList item={itemQuery.data} />
-        <SpecificationsList />
+        <SpecificationsList item={itemQuery.data} />
       </Template.Page.Content>
     </Template.Page>
   );

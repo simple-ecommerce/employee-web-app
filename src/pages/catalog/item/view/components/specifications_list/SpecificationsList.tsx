@@ -1,7 +1,34 @@
+import { useMemo } from "react";
 import { Table, Typography } from "antd";
 import { Template } from "../../../../../../components";
+import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
+import { useSpecificationCategoriesQuery } from "../../../../../../services/api/catalog/queries/useSpecificationCategoriesQuery";
 
-export const SpecificationsList = () => {
+export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
+  const specificationCategoriesQuery = useSpecificationCategoriesQuery({
+    itemId: item?.id ?? 0,
+    options: { enabled: !!item },
+  });
+
+  const dataSource = useMemo(
+    () =>
+      specificationCategoriesQuery.data?.results?.map(
+        (specificationCategory) => ({
+          key: specificationCategory.id,
+          name: specificationCategory.name,
+          children: specificationCategory.specifications.map(
+            (specification) => {
+              return {
+                key: specification.id,
+                name: specification.name,
+              };
+            }
+          ),
+        })
+      ) ?? [],
+    [specificationCategoriesQuery.data]
+  );
+
   return (
     <Template.Table>
       <Template.Table.Header
@@ -10,26 +37,7 @@ export const SpecificationsList = () => {
       <Template.Table.Content>
         <Table
           columns={[{ title: "Name", dataIndex: "name", key: "name" }]}
-          // rowSelection={{ ...rowSelection, checkStrictly }}
-          dataSource={[
-            {
-              key: 1,
-              name: "Color",
-              children: [
-                { key: 2, name: "Red" },
-                { key: 3, name: "Blue" },
-              ],
-            },
-            {
-              key: 4,
-              name: "Size",
-              children: [
-                { key: 5, name: "S" },
-                { key: 6, name: "M" },
-                { key: 7, name: "L" },
-              ],
-            },
-          ]}
+          dataSource={dataSource}
         />
       </Template.Table.Content>
     </Template.Table>
