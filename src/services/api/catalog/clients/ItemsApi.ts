@@ -5,6 +5,7 @@ import { PaginatedResponse } from "../../types/PaginatedResponse";
 import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 import { Id } from "../../../../aliases/Id";
+import { ItemSpecificationModel } from "../models/ItemSpecificationModel";
 
 export class ItemsApi {
   static Specifications = {
@@ -73,7 +74,9 @@ export class ItemsApi {
   }: {
     itemId: Id;
     companyId: Id;
-  } & PaginatedRequestPayload) {
+  } & PaginatedRequestPayload): Promise<
+    PaginatedResponse<ItemSpecificationModel>
+  > {
     return ApiService.get({
       url: `/v1/catalog/items/${itemId}/specifications`,
       params: { companyId, perPage, page },
@@ -107,8 +110,8 @@ export class ItemsApi {
     priceExtra?: number;
   }) {
     return ApiService.post({
-      url: `/v1/catalog/items/${itemId}/specifications/${specificationId}`,
-      data: { companyId, priceExtra },
+      url: `/v1/catalog/items/${itemId}/specifications`,
+      data: { companyId, priceExtra, specificationId },
     });
   }
 }

@@ -16,7 +16,7 @@ export const useSpecificationCategoriesQuery = ({
   perPage?: number;
   itemId?: Id;
   options?: QueryOptions<typeof SpecificationCategoriesApi.list>;
-}) => {
+} = {}) => {
   const companyId = ApplicationStore.use.companyId() as number;
 
   return useQuery(

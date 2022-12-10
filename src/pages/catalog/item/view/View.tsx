@@ -4,19 +4,20 @@ import {
   Popconfirm,
   Skeleton,
   Space,
-  Table,
   Typography,
 } from "antd";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Template } from "../../../../components";
-import { ItemLabels } from "../../../../constants/labels/ItemLabels";
 import { useNavigateTo, useRefreshQuery } from "../../../../hooks";
-import { ItemModel } from "../../../../services/api/catalog/models/ItemModel";
 import { useRemoveItemMutation } from "../../../../services/api/catalog/mutations/useRemoveItemMutation";
 import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../services/api/constants/Queries";
-import { InfoList, SpecificationsList } from "./components";
+import {
+  CreateSpecificationModal,
+  InfoList,
+  SpecificationsList,
+} from "./components";
 
 export const View = () => {
   const { id } = useParams<{ id: string }>();
@@ -89,6 +90,7 @@ export const View = () => {
       <Template.Page.Content>
         <InfoList item={itemQuery.data} />
         <SpecificationsList item={itemQuery.data} />
+        <CreateSpecificationModal item={itemQuery.data} />
       </Template.Page.Content>
     </Template.Page>
   );

@@ -1,8 +1,9 @@
 import { useMemo } from "react";
-import { Table, Typography } from "antd";
+import { Button, Table, Typography } from "antd";
 import { Template } from "../../../../../../components";
 import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
 import { useSpecificationCategoriesQuery } from "../../../../../../services/api/catalog/queries/useSpecificationCategoriesQuery";
+import { ItemViewStore } from "../../View.logic";
 
 export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
   const specificationCategoriesQuery = useSpecificationCategoriesQuery({
@@ -14,12 +15,12 @@ export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
     () =>
       specificationCategoriesQuery.data?.results?.map(
         (specificationCategory) => ({
-          key: specificationCategory.id,
+          key: `specification-category-${specificationCategory.id}`,
           name: specificationCategory.name,
           children: specificationCategory.specifications.map(
             (specification) => {
               return {
-                key: specification.id,
+                key: `specification-${specification.id}`,
                 name: specification.name,
               };
             }
@@ -33,6 +34,15 @@ export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
     <Template.Table>
       <Template.Table.Header
         left={<Typography.Title level={5}>Specifications</Typography.Title>}
+        right={
+          <Button
+            onClick={() =>
+              ItemViewStore.set.isCreateSpecificationModalOpen(true)
+            }
+          >
+            Create Specification
+          </Button>
+        }
       />
       <Template.Table.Content>
         <Table
