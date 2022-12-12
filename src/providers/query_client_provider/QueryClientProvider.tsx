@@ -16,6 +16,7 @@ export const QueryClientProvider = ({
           queries: {
             staleTime: 1000 * 60,
           },
+          mutations: { retry: true },
         },
       }),
     []

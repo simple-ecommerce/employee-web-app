@@ -1,21 +1,31 @@
 import { Form, InputNumber, Modal, TreeSelect } from "antd";
 import { useMemo } from "react";
+import { useRefreshQuery } from "../../../../../../hooks";
 import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
 import { useCreateItemSpecificationMutation } from "../../../../../../services/api/catalog/mutations/useCreateItemSpecificationMutation";
 import { useItemsSpecificationsQuery } from "../../../../../../services/api/catalog/queries/useItemSpecificationsQuery";
 import { useSpecificationCategoriesQuery } from "../../../../../../services/api/catalog/queries/useSpecificationCategoriesQuery";
+import { QUERIES } from "../../../../../../services/api/constants/Queries";
 import { ItemViewStore } from "../../View.logic";
 
 export const CreateSpecificationModal = ({ item }: { item?: ItemModel }) => {
   const open = ItemViewStore.use.isCreateSpecificationModalOpen();
   const specificationCategoriesQuery = useSpecificationCategoriesQuery();
+  const refreshQuery = useRefreshQuery();
   const createdItemSpecificationsQuery = useItemsSpecificationsQuery({
     itemId: item?.id ?? 0,
-    options: { enabled: !!item },
+    options: {
+      enabled: !!item,
+    },
   });
   const [form] = Form.useForm();
   const createSpecificationMutation = useCreateItemSpecificationMutation({
-    onSuccess: (e) => console.log("success", e),
+    onSuccess: async (e) => {
+      await refreshQuery([QUERIES.CATALOG.SPECIFICATION_CATEGORIES]);
+      await refreshQuery([QUERIES.CATALOG.ITEM_SPECIFICATIONS]);
+      form.resetFields();
+      ItemViewStore.set.isCreateSpecificationModalOpen(false);
+    },
   });
 
   const treeData = useMemo(
@@ -60,7 +70,6 @@ export const CreateSpecificationModal = ({ item }: { item?: ItemModel }) => {
         form={form}
         requiredMark="optional"
         onFinish={({ priceExtra, specificationId }) => {
-          console.log({ priceExtra, specificationId, itemId: item?.id });
           if (item?.id)
             createSpecificationMutation.mutate({
               itemId: item?.id,

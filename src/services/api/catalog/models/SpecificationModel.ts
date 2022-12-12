@@ -5,4 +5,5 @@ export interface SpecificationModel extends Identifiable {
   name: string;
   description: string;
   specificationCategoryId: Id;
+  priceExtra: number;
 }

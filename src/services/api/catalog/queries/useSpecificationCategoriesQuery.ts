@@ -2,7 +2,6 @@ import { useQuery } from "react-query";
 import { Id } from "../../../../aliases/Id";
 import { ApplicationStore } from "../../../stores/application/ApplicationStore";
 import { QUERIES } from "../../constants/Queries";
-import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 import { QueryOptions } from "../../types/QueryOptions";
 import { SpecificationCategoriesApi } from "../clients/SpecificationCategoriesApi";
 

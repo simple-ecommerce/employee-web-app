@@ -4,11 +4,16 @@ import { Template } from "../../../../../../components";
 import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
 import { useSpecificationCategoriesQuery } from "../../../../../../services/api/catalog/queries/useSpecificationCategoriesQuery";
 import { ItemViewStore } from "../../View.logic";
+import { RemoveCell } from "./components";
 
 export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
   const specificationCategoriesQuery = useSpecificationCategoriesQuery({
     itemId: item?.id ?? 0,
     options: { enabled: !!item },
+  });
+
+  console.log({
+    specificationCategoriesQuery: specificationCategoriesQuery.data,
   });
 
   const dataSource = useMemo(
@@ -17,10 +22,16 @@ export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
         (specificationCategory) => ({
           key: `specification-category-${specificationCategory.id}`,
           name: specificationCategory.name,
+          priceExtra: null,
+          id: specificationCategory.id,
+          type: "category",
           children: specificationCategory.specifications.map(
             (specification) => {
               return {
+                type: "specification",
+                priceExtra: specification.priceExtra,
                 key: `specification-${specification.id}`,
+                id: specification.id,
                 name: specification.name,
               };
             }
@@ -45,10 +56,37 @@ export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
         }
       />
       <Template.Table.Content>
-        <Table
-          columns={[{ title: "Name", dataIndex: "name", key: "name" }]}
-          dataSource={dataSource}
-        />
+        {!specificationCategoriesQuery.isLoading && (
+          <Table
+            expandable={{ defaultExpandAllRows: true }}
+            columns={[
+              { title: "Name", dataIndex: "name", key: "name" },
+              {
+                title: "Price Extra",
+                render: (_, specification) => {
+                  return !!specification?.priceExtra
+                    ? `$${specification?.priceExtra}`
+                    : "";
+                },
+                key: "priceExtra",
+              },
+              {
+                title: "",
+                key: "remove",
+                render: (_, specification) => {
+                  if (specification?.type == "category") return <></>;
+                  return (
+                    <RemoveCell
+                      itemId={item?.id}
+                      specificationId={specification.id}
+                    />
+                  );
+                },
+              },
+            ]}
+            dataSource={dataSource}
+          />
+        )}
       </Template.Table.Content>
     </Template.Table>
   );
