@@ -14,6 +14,12 @@ export class ItemsApi {
     list: ItemsApi.listSpecifications,
   };
 
+  static Images = {
+    add: ItemsApi.addImage,
+    remove: ItemsApi.removeImage,
+    update: ItemsApi.updateImage,
+  };
+
   static async list({
     page,
     perPage,
@@ -112,6 +118,40 @@ export class ItemsApi {
     return ApiService.post({
       url: `/v1/catalog/items/${itemId}/specifications`,
       data: { companyId, priceExtra, specificationId },
+    });
+  }
+
+  static async addImage({ companyId, itemId }: { companyId: Id; itemId: Id }) {}
+
+  static async removeImage({
+    companyId,
+    itemId,
+    imageId,
+  }: {
+    companyId: Id;
+    itemId: Id;
+    imageId: Id;
+  }) {
+    return ApiService.delete({
+      url: `/v1/catalog/items/${itemId}/images/${imageId}`,
+      params: { companyId },
+    });
+  }
+
+  static async updateImage({
+    companyId,
+    itemId,
+    imageId,
+    position,
+  }: {
+    companyId: Id;
+    itemId: Id;
+    imageId: Id;
+    position: number;
+  }) {
+    return ApiService.patch({
+      url: `/v1/catalog/items/${itemId}/images/${imageId}`,
+      data: { companyId, position },
     });
   }
 }

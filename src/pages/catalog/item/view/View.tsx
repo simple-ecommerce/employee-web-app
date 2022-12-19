@@ -15,6 +15,7 @@ import { useItemQuery } from "../../../../services/api/catalog/queries/useItemQu
 import { QUERIES } from "../../../../services/api/constants/Queries";
 import {
   CreateSpecificationModal,
+  ImagesList,
   InfoList,
   SpecificationsList,
 } from "./components";
@@ -90,6 +91,7 @@ export const View = () => {
       <Template.Page.Content>
         <InfoList item={itemQuery.data} />
         <SpecificationsList item={itemQuery.data} />
+        <ImagesList item={itemQuery.data} />
         <CreateSpecificationModal item={itemQuery.data} />
       </Template.Page.Content>
     </Template.Page>

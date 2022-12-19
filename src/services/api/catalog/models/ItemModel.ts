@@ -1,4 +1,5 @@
 import { ISOString } from "../../../../aliases/ISOString";
+import { ImageModel } from "../../core/models/ImageModel";
 import { Identifiable } from "../../types/Identifiable";
 
 export interface ItemModel extends Identifiable {
@@ -13,4 +14,5 @@ export interface ItemModel extends Identifiable {
   brand: string;
   createdAt: ISOString;
   updatedAt: ISOString;
+  images: ImageModel[];
 }

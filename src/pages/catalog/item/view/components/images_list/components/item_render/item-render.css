@@ -1,0 +1,9 @@
+.ant-upload-list-item {
+  width: 90%;
+}
+
+.ant-upload-list-item-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

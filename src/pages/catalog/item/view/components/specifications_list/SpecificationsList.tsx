@@ -12,10 +12,6 @@ export const SpecificationsList = ({ item }: { item?: ItemModel }) => {
     options: { enabled: !!item },
   });
 
-  console.log({
-    specificationCategoriesQuery: specificationCategoriesQuery.data,
-  });
-
   const dataSource = useMemo(
     () =>
       specificationCategoriesQuery.data?.results?.map(
