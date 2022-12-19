@@ -7,7 +7,7 @@ import { useRefreshQuery } from "../../../../../../../../hooks";
 import { useUpdateItemImageMutation } from "../../../../../../../../services/api/catalog/mutations/useUpdateItemImageMutation";
 import { useItemQuery } from "../../../../../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../../../../../services/api/constants/Queries";
-import "./item-render.css";
+
 
 export const ItemRender = ({
   file,

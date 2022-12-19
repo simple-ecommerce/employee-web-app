@@ -1,11 +1,9 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Card, Modal, Upload, UploadFile } from "antd";
-import { useEffect, useMemo, useState } from "react";
-import { ItemModel } from "../../../../../../services/api/catalog/models/ItemModel";
-import type { RcFile, UploadProps } from "antd/es/upload";
-import { ItemRender } from "./components";
+import { Button, Card, Image, Table } from "antd";
+import { useCallback, useMemo, useState } from "react";
+import "./images-list.css";
 import { useParams } from "react-router-dom";
 import { useItemQuery } from "../../../../../../services/api/catalog/queries/useItemQuery";
+import { DraggableBodyRow } from "./components";
 
 export const ImagesList = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,23 +12,23 @@ export const ImagesList = () => {
     options: { enabled: !!id },
   });
 
-  useEffect(() => {
-    if (itemQuery.data?.images.length) {
-      setFileList(
-        itemQuery.data.images.map((image) => ({
-          uid: image.id,
-          name: image.fileName,
-          status: "done",
-          url: image.src,
-        }))
-      );
-    }
-  }, [itemQuery.data?.images]);
+  const dataSource = useMemo(
+    () =>
+      itemQuery.data?.images.map((image) => {
+        return {
+          id: image.id,
+          key: image.id,
+          fileName: image.fileName,
+          src: image.src,
+          position: image.position,
+        };
+      }),
+    [itemQuery.data]
+  );
 
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
+  const moveRow = useCallback((dragIndex: number, hoverIndex: number) => {
+    console.log("move");
+  }, []);
 
   return (
     <Card
@@ -45,21 +43,26 @@ export const ImagesList = () => {
         </Button>
       }
     >
-      <Upload
-        fileList={fileList}
-        listType="picture"
-        supportServerRender={true}
-        accept="image/*"
-        itemRender={(item, file) => <ItemRender item={item} file={file} />}
-        onChange={handleChange}
-        directory={false}
-        maxCount={5}
-        multiple={true}
-      >
-        <Button id="upload-image-button" hidden>
-          Upload
-        </Button>
-      </Upload>
+      <Table
+        columns={[
+          {
+            title: "Image",
+            render: (_, { src }) => <Image src={src} width={100} />,
+          },
+
+          { title: "File Name", dataIndex: "fileName" },
+        ]}
+        dataSource={dataSource}
+        components={{ body: { row: DraggableBodyRow } }}
+        onRow={({ id, position }, index) => {
+          const attr = {
+            imageId: id,
+            imagePosition: position,
+            moveRow,
+          };
+          return attr as React.HTMLAttributes<any>;
+        }}
+      />
     </Card>
   );
 };
