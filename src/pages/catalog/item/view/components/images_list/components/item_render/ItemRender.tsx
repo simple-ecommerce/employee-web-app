@@ -1,13 +1,12 @@
 import { MenuOutlined } from "@ant-design/icons";
 import { UploadFile } from "antd";
-import { ReactElement, useCallback, useEffect, useMemo } from "react";
+import { ReactElement, useEffect, useMemo } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { useParams } from "react-router-dom";
 import { useRefreshQuery } from "../../../../../../../../hooks";
 import { useUpdateItemImageMutation } from "../../../../../../../../services/api/catalog/mutations/useUpdateItemImageMutation";
 import { useItemQuery } from "../../../../../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../../../../../services/api/constants/Queries";
-
 
 export const ItemRender = ({
   file,
@@ -44,10 +43,7 @@ export const ItemRender = ({
       const dropped = itemQuery.data?.images.find(
         (image) => image.id == file.uid
       );
-      console.log({
-        a: dragged?.position,
-        b: dropped?.position,
-      });
+
       await updateItemImageMutation.mutateAsync({
         imageId: dragged?.id,
         itemId: itemQuery.data?.id,
@@ -56,10 +52,6 @@ export const ItemRender = ({
       await refreshQuery([QUERIES.CATALOG.ITEM, Number(itemId)]);
     },
   }));
-
-  useEffect(() => {
-    console.log({ dragCollect, dropCollect });
-  }, [dragCollect, dropCollect]);
 
   return (
     <div

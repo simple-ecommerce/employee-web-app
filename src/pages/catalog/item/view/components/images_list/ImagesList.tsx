@@ -4,6 +4,12 @@ import "./images-list.css";
 import { useParams } from "react-router-dom";
 import { useItemQuery } from "../../../../../../services/api/catalog/queries/useItemQuery";
 import { DraggableBodyRow } from "./components";
+import { useCreateItemImageMutation } from "../../../../../../services/api/catalog/mutations/useCreateItemImageMutation";
+import { useRefreshQuery } from "../../../../../../hooks";
+import { QUERIES } from "../../../../../../services/api/constants/Queries";
+import { Upload } from "../../../../../../components";
+
+const whitelist = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
 
 export const ImagesList = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,6 +18,8 @@ export const ImagesList = () => {
     options: { enabled: !!id },
   });
 
+  const createImageMutation = useCreateItemImageMutation();
+  const refreshQuery = useRefreshQuery();
   const dataSource = useMemo(
     () =>
       itemQuery.data?.images.map((image) => {
@@ -27,20 +35,29 @@ export const ImagesList = () => {
   );
 
   const moveRow = useCallback((dragIndex: number, hoverIndex: number) => {
-    console.log("move");
+    // console.log("move");
   }, []);
 
   return (
     <Card
       title="Images"
       extra={
-        <Button
-          onClick={() => {
-            document.getElementById("upload-image-button")?.click();
+        <Upload.Button
+          accept={whitelist.join(", ")}
+          multiple
+          onChange={async (e) => {
+            if (e.target.files && itemQuery.data?.id) {
+              await createImageMutation.mutateAsync({
+                images: e.target.files,
+                itemId: itemQuery.data?.id,
+              });
+              await refreshQuery([QUERIES.CATALOG.ITEM, itemQuery.data?.id]);
+              e.target.value = "";
+            }
           }}
         >
-          Add Image
-        </Button>
+          Upload Image
+        </Upload.Button>
       }
     >
       <Table

@@ -6,6 +6,8 @@ import { PaginatedRequestPayload } from "../../types/PaginatedRequestPayload";
 import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 import { Id } from "../../../../aliases/Id";
 import { ItemSpecificationModel } from "../models/ItemSpecificationModel";
+import { ImageModel } from "../../core/models/ImageModel";
+import axios from "axios";
 
 export class ItemsApi {
   static Specifications = {
@@ -121,7 +123,31 @@ export class ItemsApi {
     });
   }
 
-  static async addImage({ companyId, itemId }: { companyId: Id; itemId: Id }) {}
+  static async addImage({
+    companyId,
+    itemId,
+    images,
+  }: {
+    companyId: Id;
+    itemId: Id;
+    images: FileList;
+  }): Promise<ImageModel[]> {
+    const formData = new FormData();
+    formData.append("company_id", String(companyId));
+    for (const file of images) {
+      formData.append("files", file);
+    }
+
+    return ApiService.client.post(
+      `/v1/catalog/items/${itemId}/images`,
+      formData,
+      {
+        headers: {
+          "Content-Type": `multipart/form-data`,
+        },
+      }
+    );
+  }
 
   static async removeImage({
     companyId,

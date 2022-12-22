@@ -3,7 +3,6 @@ import { useDrag, useDrop } from "react-dnd";
 import { useParams } from "react-router-dom";
 import { useRefreshQuery } from "../../../../../../../../hooks";
 import { useUpdateItemImageMutation } from "../../../../../../../../services/api/catalog/mutations/useUpdateItemImageMutation";
-import { useItemQuery } from "../../../../../../../../services/api/catalog/queries/useItemQuery";
 import { QUERIES } from "../../../../../../../../services/api/constants/Queries";
 
 interface DraggableBodyRowProps
@@ -44,7 +43,6 @@ export const DraggableBodyRow = ({
       };
     },
     drop: async ({ imageId }: { index: number; imageId: number }) => {
-      console.log({ imageId, imagePosition });
       await updateItemImageMutation.mutateAsync({
         imageId,
         itemId: itemId,
