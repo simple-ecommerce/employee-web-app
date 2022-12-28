@@ -1,5 +1,6 @@
-import { Layout } from "antd";
 import "antd/dist/reset.css";
+
+import { Layout } from "antd";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import * as Pages from "./pages";
@@ -9,7 +10,7 @@ import { parseCookies } from "nookies";
 import { Sidebar } from "./components";
 import { Paths } from "./constants/Paths";
 import { useLoadCompany } from "./hooks";
-
+import * as S from "./App.style";
 function App() {
   const isAuthenticated = AuthStore.use.isAuthenticated();
   const isLoading = AuthStore.use.isLoading();
@@ -37,10 +38,10 @@ function App() {
 
   return (
     <Layout>
-      <Layout.Sider>
+      <S.Layout.Sider>
         <Sidebar />
-      </Layout.Sider>
-      <Layout.Content>
+      </S.Layout.Sider>
+      <S.Layout.Content>
         <Routes>
           {/* DASHBOARD */}
           <Route
@@ -106,7 +107,7 @@ function App() {
           {/*  */}
           <Route path="/" element={<Pages.Dashboard.Index />} />
         </Routes>
-      </Layout.Content>
+      </S.Layout.Content>
     </Layout>
   );
 }

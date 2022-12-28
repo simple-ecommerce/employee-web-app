@@ -1,6 +1,7 @@
 import * as S from "./Sidebar.style";
 import { useItems, useOnClick, useSelectedKeys } from "./hooks";
 import { CompanySelector } from "./components";
+import { Menu } from "antd";
 
 export const Sidebar = () => {
   const selectedKeys = useSelectedKeys();
@@ -10,7 +11,7 @@ export const Sidebar = () => {
   return (
     <S.Container>
       <CompanySelector />
-      <S.Menu
+      <Menu
         onClick={onClick}
         selectedKeys={selectedKeys}
         mode="inline"
