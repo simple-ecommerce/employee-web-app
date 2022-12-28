@@ -1,5 +1,4 @@
 import "antd/dist/reset.css";
-
 import { Layout } from "antd";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
@@ -9,12 +8,16 @@ import { useEffect } from "react";
 import { parseCookies } from "nookies";
 import { Sidebar } from "./components";
 import { Paths } from "./constants/Paths";
-import { useLoadCompany } from "./hooks";
+import { useLoadCompany, useOnLanguageChange } from "./hooks";
 import * as S from "./App.style";
+import "../i18n";
+
 function App() {
   const isAuthenticated = AuthStore.use.isAuthenticated();
   const isLoading = AuthStore.use.isLoading();
   const companyId = useLoadCompany();
+
+  useOnLanguageChange();
 
   useEffect(() => {
     const cookies = parseCookies();

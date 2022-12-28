@@ -1,6 +1,6 @@
 import * as S from "./Sidebar.style";
 import { useItems, useOnClick, useSelectedKeys } from "./hooks";
-import { CompanySelector } from "./components";
+import { CompanySelector, LanguageSelector } from "./components";
 import { Menu } from "antd";
 
 export const Sidebar = () => {
@@ -17,6 +17,7 @@ export const Sidebar = () => {
         mode="inline"
         items={items}
       />
+      <LanguageSelector />
     </S.Container>
   );
 };

@@ -1,5 +1,6 @@
 import { Button, Table, Typography } from "antd";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Template } from "../../../../components";
 import { useNavigateTo } from "../../../../hooks";
 import { useItemsQuery } from "../../../../services/api/catalog/queries/useItemsQuery";
@@ -11,11 +12,14 @@ export const List = () => {
   const itemsQuery = useItemsQuery({ page, perPage: 50 });
   const navigateTo = useNavigateTo();
   const columns = useColumns();
+  const { t } = useTranslation();
 
   return (
     <Template.Page>
       <Template.Page.Header>
-        <Typography.Title level={3}>Items</Typography.Title>
+        <Typography.Title level={3}>
+          {t("catalog.items.show.title")}
+        </Typography.Title>
       </Template.Page.Header>
       <Template.Page.Content>
         <S.Header.Container>
