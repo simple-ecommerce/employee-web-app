@@ -46,7 +46,6 @@ export const List = () => {
                   </>
                 );
               },
-              defaultExpandedRowKeys: ["0"],
             }}
             columns={[
               {

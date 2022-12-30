@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from "react";
 import "./images-list.css";
 import { useParams } from "react-router-dom";
 import { useItemQuery } from "../../../../../../services/api/catalog/queries/useItemQuery";
-import { DraggableBodyRow } from "./components";
+import { DraggableBodyRow, RemoveCell } from "./components";
 import { useCreateItemImageMutation } from "../../../../../../services/api/catalog/mutations/useCreateItemImageMutation";
 import { useRefreshQuery } from "../../../../../../hooks";
 import { QUERIES } from "../../../../../../services/api/constants/Queries";
@@ -68,6 +68,12 @@ export const ImagesList = () => {
           },
 
           { title: "File Name", dataIndex: "fileName" },
+          {
+            title: "",
+            render: (_, { id }) => {
+              return <RemoveCell imageId={id} itemId={itemQuery.data?.id} />;
+            },
+          },
         ]}
         dataSource={dataSource}
         components={{ body: { row: DraggableBodyRow } }}

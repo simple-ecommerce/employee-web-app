@@ -7,7 +7,6 @@ import { PayloadWithCompanyId } from "../../types/PayloadWithCompanyId";
 import { Id } from "../../../../aliases/Id";
 import { ItemSpecificationModel } from "../models/ItemSpecificationModel";
 import { ImageModel } from "../../core/models/ImageModel";
-import axios from "axios";
 
 export class ItemsApi {
   static Specifications = {
