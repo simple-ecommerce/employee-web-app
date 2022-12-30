@@ -1,4 +1,5 @@
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
+import { useState } from "react";
 import { Id } from "../../../../../../../../aliases/Id";
 import { useRefreshQuery } from "../../../../../../../../hooks";
 import { useRemoveItemImageMutation } from "../../../../../../../../services/api/catalog/mutations/useRemoveItemImageMutation";
@@ -11,8 +12,8 @@ export const RemoveCell = ({
   itemId?: Id;
   imageId?: Id;
 }) => {
+  const [isConfirmPopOpen, setIsConfirmPopOpen] = useState(false);
   const refreshQuery = useRefreshQuery();
-
   const removeImageMutation = useRemoveItemImageMutation({
     onSuccess: async () => {
       await refreshQuery([QUERIES.CATALOG.ITEM, itemId]);
@@ -20,8 +21,9 @@ export const RemoveCell = ({
   });
 
   return (
-    <Button
-      onClick={() =>
+    <Popconfirm
+      title="Are you sure you want to delete this image?"
+      onConfirm={() =>
         imageId &&
         itemId &&
         removeImageMutation.mutate({
@@ -29,9 +31,14 @@ export const RemoveCell = ({
           itemId,
         })
       }
-      type="link"
+      onCancel={() => setIsConfirmPopOpen(false)}
+      okText="Yes"
+      open={isConfirmPopOpen}
+      cancelText="No"
     >
-      Remove
-    </Button>
+      <Button onClick={() => setIsConfirmPopOpen(true)} type="link">
+        Remove
+      </Button>
+    </Popconfirm>
   );
 };
