@@ -79,19 +79,6 @@ export const CreateSpecificationModal = ({ item }: { item?: ItemModel }) => {
         }}
       >
         <Form.Item
-          rules={[{ required: false }]}
-          label="Price Extra"
-          name="priceExtra"
-        >
-          <InputNumber
-            style={{ width: "100%" }}
-            formatter={(value) =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={(value: any) => value?.replace(/\$\s?|(,*)/g, "")}
-          />
-        </Form.Item>
-        <Form.Item
           rules={[{ required: true }]}
           label="Specification"
           name="specificationId"
@@ -104,6 +91,19 @@ export const CreateSpecificationModal = ({ item }: { item?: ItemModel }) => {
             allowClear
             treeDefaultExpandAll
             treeData={treeData}
+          />
+        </Form.Item>
+        <Form.Item
+          rules={[{ required: false }]}
+          label="Price Extra"
+          name="priceExtra"
+        >
+          <InputNumber
+            style={{ width: "100%" }}
+            formatter={(value) =>
+              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+            parser={(value: any) => value?.replace(/\$\s?|(,*)/g, "")}
           />
         </Form.Item>
       </Form>
